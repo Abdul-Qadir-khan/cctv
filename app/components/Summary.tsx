@@ -16,7 +16,7 @@ function Summary() {
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         <div className="rounded-xl overflow-hidden shadow-lg cursor-pointer hover:scale-105 transform transition duration-300">
-          <img src="/images/residential-camera.jpg" alt="Residential CCTV" className="w-full h-60 object-cover" />
+          <img src="/images/residential-camera.webp" alt="Residential CCTV" className="w-full h-60 object-cover" />
           <div className="p-4 bg-white">
             <h3 className="font-semibold text-lg mb-2">Residential CCTV</h3>
             <p className="text-gray-600 text-sm">
@@ -26,7 +26,7 @@ function Summary() {
         </div>
 
         <div className="rounded-xl overflow-hidden shadow-lg cursor-pointer hover:scale-105 transform transition duration-300">
-          <img src="/images/dome-camera.jpg" alt="Commercial CCTV" className="w-full h-60 object-cover" />
+          <img src="/images/dome-camera.webp" alt="Commercial CCTV" className="w-full h-60 object-cover" />
           <div className="p-4 bg-white">
             <h3 className="font-semibold text-lg mb-2">Commercial CCTV</h3>
             <p className="text-gray-600 text-sm">
@@ -36,7 +36,7 @@ function Summary() {
         </div>
 
         <div className="rounded-xl overflow-hidden shadow-lg cursor-pointer hover:scale-105 transform transition duration-300">
-          <img src="/images/bullet-camera.jpg" alt="24/7 Monitoring" className="w-full h-60 object-cover" />
+          <img src="/images/bullet-camera.webp" alt="24/7 Monitoring" className="w-full h-60 object-cover" />
           <div className="p-4 bg-white">
             <h3 className="font-semibold text-lg mb-2">24/7 Monitoring Service</h3>
             <p className="text-gray-600 text-sm">

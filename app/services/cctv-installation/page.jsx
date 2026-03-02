@@ -36,7 +36,7 @@ const services = [
             "Remote Viewing Setup",
             "Complete Testing & Handover",
         ],
-        image: "/images/security-camera-building.jpg",
+        image: "/images/security-camera-building.webp",
     },
     {
         id: "maintenance",

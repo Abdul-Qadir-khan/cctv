@@ -8,7 +8,7 @@ const accessories = [
     id: 1,
     name: "Mounting Bracket",
     description: "Durable mount for CCTV cameras.",
-    image: "/images/dome-camera.jpg",
+    image: "/images/dome-camera.webp",
     price: "$29",
     oldPrice: "$39",
     isNew: true,

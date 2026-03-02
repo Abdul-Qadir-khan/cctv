@@ -21,7 +21,7 @@ const products: Product[] = [
     id: 1,
     name: "HD CCTV Camera",
     description: "High-definition surveillance camera with night vision.",
-    image: "/images/dome-camera.jpg",
+    image: "/images/dome-camera.webp",
     price: "$199",
     originalPrice: "$249",
     brand: {
@@ -34,7 +34,7 @@ const products: Product[] = [
     id: 2,
     name: "Smart DVR System",
     description: "Record and monitor your security seamlessly.",
-    image: "/images/bullet-camera.jpg",
+    image: "/images/bullet-camera.webp",
     price: "$349",
     originalPrice: "$399",
     brand: {
@@ -46,7 +46,7 @@ const products: Product[] = [
     id: 3,
     name: "Motion Sensor Alarm",
     description: "Detect motion instantly and get alerts in real-time.",
-    image: "/images/pole-camera.jpg",
+    image: "/images/pole-camera.webp",
     price: "$129",
     brand: {
       name: "TechGuard",
@@ -57,7 +57,7 @@ const products: Product[] = [
     id: 4,
     name: "Wireless Security Camera",
     description: "Compact, easy-to-install wireless camera system.",
-    image: "/images/residential-camera.jpg",
+    image: "/images/residential-camera.webp",
     price: "$179",
     originalPrice: "$209",
     brand: {

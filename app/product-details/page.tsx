@@ -11,10 +11,10 @@ const product = {
     "Experience crystal clear surveillance with the Pro Series HD CCTV Camera, featuring night vision, motion detection, and weather resistance.",
   price: "$299",
   images: [
-    "/images/dome-camera.jpg",
-    "/images/bullet-camera.jpg",
-    "/images/wireless-camera.jpg",
-    "/images/pole-camera.jpg",
+    "/images/dome-camera.webp",
+    "/images/bullet-camera.webp",
+    "/images/wireless-camera.webp",
+    "/images/pole-camera.webp",
   ],
   variations: {
     colors: ["Black", "White", "Grey"],

@@ -27,7 +27,7 @@ const slides = [
     title: "24/7 Monitoring & Support",
     subtitle:
       "Stay connected and secure with round-the-clock monitoring from our expert team.",
-    image: "/images/bullet-camera.jpg",
+    image: "/images/bullet-camera.webp",
     buttonText: "Learn More",
     buttonLink: "/services",
     buttonVariant: "secondary",

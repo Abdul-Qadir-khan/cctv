@@ -91,7 +91,7 @@ export default function Services() {
 
             {/* Right Column - Highlight Box */}
             <div className="bg-black text-white md:p-14 p-5 rounded-3xl relative">
-              <Image src="/images/residential-camera.jpg" className="object-cover w-125 h-60 rounded-3xl mb-3" alt="" title="" width={600} height={300} />
+              <Image src="/images/residential-camera.webp" className="object-cover w-125 h-60 rounded-3xl mb-3" alt="" title="" width={600} height={300} />
               <h3 className="text-3xl md:text-4xl font-bold mb-6">
                 Why Choose Our Security Solutions?
               </h3>

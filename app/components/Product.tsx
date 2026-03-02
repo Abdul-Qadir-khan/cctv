@@ -7,32 +7,32 @@ import Link from "next/link";
 const products = [
   {
     name: "HD Dome CCTV Camera",
-    image: "/images/dome-camera.jpg",
+    image: "/images/dome-camera.webp",
     link: "/products/hd-cctv",
   },
   {
     name: "Bullet CCTV Camera",
-    image: "/images/bullet-camera.jpg",
+    image: "/images/bullet-camera.webp",
     link: "/products/dvr-system",
   },
   {
     name: "Pole Mounted CCTV Camera",
-    image: "/images/pole-camera.jpg",
+    image: "/images/pole-camera.webp",
     link: "/products/video-door-phone",
   },
   {
     name: "Residential CCTV Camera",
-    image: "/images/residential-camera.jpg",
+    image: "/images/residential-camera.webp",
     link: "/products/biometric-access",
   },
   {
     name: "Wireless CCTV Camera",
-    image: "/images/wireless-camera.jpg",
+    image: "/images/wireless-camera.webp",
     link: "/products/biometric-access",
   },
   {
     name: "Traffic Pole CCTV Camera",
-    image: "/images/traffic-pole-camera.jpg",
+    image: "/images/traffic-pole-camera.webp",
     link: "/products/biometric-access",
   },
 ];
