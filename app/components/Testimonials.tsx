@@ -36,10 +36,10 @@ export default function TestimonialSection() {
   }, []);
 
   return (
-    <section className="bg-black text-white py-28 px-6 md:px-20 overflow-hidden">
+    <section className="bg-black text-white md:py-24 py-12 px-5 md:px-20 overflow-hidden">
       <div className="max-w-5xl mx-auto text-center">
 
-        <h2 className="text-4xl font-bold mb-16">
+        <h2 className="md:text-4xl text-3xl font-bold mb-16">
           What Our Clients Say
         </h2>
 
@@ -54,7 +54,7 @@ export default function TestimonialSection() {
                   : "opacity-0 scale-95 absolute inset-0"
               }`}
             >
-              <div className="bg-gray-900 rounded-2xl p-12 shadow-2xl">
+              <div className="bg-gray-900 rounded-2xl md:p-12 p-5 shadow-2xl">
 
                 {/* Stars */}
                 <div className="flex justify-center mb-6">

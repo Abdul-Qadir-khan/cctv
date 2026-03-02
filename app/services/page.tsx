@@ -119,13 +119,13 @@ export default function ServicesPage() {
         })}
       </Script>
 
-      <section className="bg-black py-12 mb-20"></section>
+      <section className="bg-black py-12 md:mb-20 mb-5"></section>
 
       {/* Optional Services component */}
       <Summary />
       <Services />
 
-      <section className="bg-[var(--color-dark)] text-white py-20 px-5">
+      <section className="bg-[var(--color-dark)] text-white md:py-20 p-10 px-5">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
             See What Our Happy Clients Are Saying
@@ -155,9 +155,9 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto my-20 p-12 bg-primary rounded-xl shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
+      <section className="md:max-w-6xl md:mx-auto md:my-20 my-10 mx-5 md:p-12 p-4 bg-primary rounded-xl shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="max-w-xl">
-          <h2 className="text-4xl font-bold text-white mb-4">
+          <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
             Ready To Secure Your Property With Expert CCTV Solutions?
           </h2>
           <p className="text-gray-300 mb-6 max-w-md">
@@ -165,16 +165,16 @@ export default function ServicesPage() {
           </p>
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex gap-4 flex-wrap">
           <a
             href="/contact"
-            className="bg-(--color-accent) text-white font-semibold px-8 py-4 rounded-lg shadow hover:bg-(--color-primary) transition"
+            className="bg-(--color-accent) text-white font-medium md:px-8 px-4 md:py-4 py-2 rounded-lg shadow hover:bg-(--color-primary) transition"
           >
             Get A Free Quote
           </a>
           <a
             href="/demo"
-            className="border border-(--color-accent) text-(--color-accent) font-semibold px-8 py-4 rounded-lg hover:bg-(--color-accent) hover:text-white transition"
+            className="border border-(--color-accent) text-(--color-accent) font-medium md:px-8 px-4 md:py-4 py-2 rounded-lg hover:bg-(--color-accent) hover:text-white transition"
           >
             Book A Demo
           </a>

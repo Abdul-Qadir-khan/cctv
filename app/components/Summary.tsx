@@ -9,8 +9,8 @@ const stats = [
 function Summary() {
   return (
     <>
-    <section className="max-w-7xl mx-auto mb-24">
-      <h1 className="text-4xl sm:text-5xl font-bold text-[var(--color-primary)] mb-8 max-w-3xl">
+    <section className="max-w-7xl mx-auto md:mb-20 mb-10 px-5">
+      <h1 className="text-4xl sm:text-5xl font-bold text-(--color-primary) mb-8 max-w-3xl">
         End-to-End CCTV Solutions for Your Home and Business
       </h1>
 
@@ -47,11 +47,11 @@ function Summary() {
       </div>
     </section>
     
-   <section className="max-w-7xl mx-auto py-16 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
+   <section className="max-w-7xl mx-auto md:py-16 pt-8 px-5 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
       {stats.map(({ label, value }, idx) => (
         <div key={idx} className="flex flex-col items-center">
-          <p className="text-6xl font-extrabold text-(--color-primary)">{value}</p>
-          <p className="mt-2 text-gray-700 font-medium">{label}</p>
+          <p className="text-4xl md:text-6xl font-extrabold text-(--color-primary)">{value}</p>
+          <p className="text-sm md:text-md mt-2 text-gray-700 font-medium">{label}</p>
         </div>
       ))}
     </section>

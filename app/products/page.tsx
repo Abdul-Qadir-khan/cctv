@@ -72,15 +72,15 @@ export default function ProductsPageWithBrands() {
   return (
     <>
       <section className="bg-black py-12"></section>
-      <section className="w-full min-h-screen bg-gray-50 py-24 px-6 md:px-20">
-        <div className="max-w-7xl mx-auto">
+      <section className="w-full min-h-screen bg-gray-50 md:py-24 py-12 px-5 md:px-20">
+        <div className="md:max-w-7xl w-full mx-auto">
 
           {/* Header */}
-          <div className="text-center mb-20">
+          <div className="text-center md:mb-20 mb-10">
             <span className="text-sm uppercase tracking-widest text-accent font-semibold">
               Explore
             </span>
-            <h2 className="text-4xl md:text-6xl font-bold mt-4 leading-tight text-gray-900">
+            <h2 className="text-4xl md:text-6xl font-bold mt-4 md:leading-tight leading-tighter text-gray-900">
               Featured Products
               <span className="block text-gray-400 text-lg md:text-xl mt-2 font-medium">
                 Premium CCTV & Security Systems
@@ -92,14 +92,14 @@ export default function ProductsPageWithBrands() {
           </div>
 
           {/* Products Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:gap-12 gap-6">
             {products.map((product) => (
               <div
                 key={product.id}
                 className="relative rounded-3xl overflow-hidden shadow-lg group cursor-pointer hover:shadow-2xl transition-shadow duration-500"
               >
                 {/* Product Image */}
-                <div className="relative h-80 overflow-hidden">
+                <div className="relative md:h-80 h-70 overflow-hidden">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -127,9 +127,9 @@ export default function ProductsPageWithBrands() {
                   )}
 
                   {/* Text Overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-black/70 to-transparent">
-                    <h3 className="text-xl font-bold text-white">{product.name}</h3>
-                    <p className="text-gray-200 text-sm mt-1">{product.description}</p>
+                  <div className="absolute bottom-0 left-0 right-0 md:p-6 p-3 pb-4 bg-linear-to-t from-black/70 to-transparent">
+                    <h3 className="text-lg md:text-xl font-bold text-white">{product.name}</h3>
+                    <p className="text-gray-200 text-sm md:mt-1">{product.description}</p>
                     <div className="flex items-center justify-between mt-3">
                       <div className="flex items-center gap-2">
                         {product.originalPrice && (
@@ -137,13 +137,13 @@ export default function ProductsPageWithBrands() {
                             {product.originalPrice}
                           </span>
                         )}
-                        <span className="text-accent font-bold text-lg">
+                        <span className="text-accent font-semibold text-lg">
                           {product.price}
                         </span>
                       </div>
                       <button
                         onClick={() => alert(`Added ${product.name} to cart!`)}
-                        className="bg-accent text-white px-4 py-2 rounded-lg text-sm font-semibold hover:scale-105 transform transition-transform"
+                        className="bg-accent text-white px-4 py-2 rounded-lg text-sm font-medium hover:scale-105 transform transition-transform"
                       >
                         Buy Now
                       </button>

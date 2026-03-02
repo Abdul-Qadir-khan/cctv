@@ -38,7 +38,7 @@ export default function Header() {
       name: "Services",
       href: "/services",
       submenu: [
-        { name: "CCTV Installation", href: "/services/cctv" },
+        { name: "CCTV Installation", href: "/services/cctv-installation" },
         { name: "Security Systems", href: "/services/security" },
       ],
     },

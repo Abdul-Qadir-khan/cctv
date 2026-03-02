@@ -34,16 +34,16 @@ const services = [
 export default function Services() {
   return (
     <>
-      <section className="bg-white text-gray-900 py-24 px-6 md:px-12 relative overflow-hidden">
+      <section className="bg-white text-gray-900 py-24 px-5 md:px-12 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
 
           {/* Top Heading */}
-          <div className="mb-20">
+          <div className="md:mb-20 mb-10">
             <span className="text-sm uppercase tracking-[0.3em] text-accent font-semibold">
               Our Expertise
             </span>
 
-            <h2 className="text-4xl md:text-6xl font-bold mt-4 leading-tight max-w-4xl">
+            <h2 className="text-3xl md:text-6xl font-bold mt-4 leading-tight max-w-4xl">
               Advanced Security & Surveillance
               <span className="block text-gray-300">
                 Built for Modern Protection
@@ -52,10 +52,10 @@ export default function Services() {
           </div>
 
           {/* Services Layout */}
-          <div className="grid lg:grid-cols-2 gap-20">
+          <div className="grid lg:grid-cols-2 md:gap-20 gap-10">
 
             {/* Left Column - Services List */}
-            <div className="space-y-12">
+            <div className="md:space-y-12 space-y-6">
               {services.map((service, index) => {
                 const Icon = service.icon;
                 return (
@@ -90,7 +90,7 @@ export default function Services() {
             </div>
 
             {/* Right Column - Highlight Box */}
-            <div className="bg-black text-white p-14 rounded-3xl relative">
+            <div className="bg-black text-white md:p-14 p-5 rounded-3xl relative">
               <Image src="/images/residential-camera.jpg" className="object-cover w-125 h-60 rounded-3xl mb-3" alt="" title="" width={600} height={300} />
               <h3 className="text-3xl md:text-4xl font-bold mb-6">
                 Why Choose Our Security Solutions?
@@ -104,7 +104,7 @@ export default function Services() {
               </ul>
 
               <div className="mt-10">
-                <Button variant="accent" className="px-8 py-3 text-lg">
+                <Button variant="accent" className="md:px-8 w-full md:w-fit py-3 text-lg">
                   Get a Free Consultation
                 </Button>
               </div>

@@ -1,7 +1,7 @@
 "use client";
-
+import Image from 'next/image'
 import { useState } from "react";
-import Testimonials from "../components/Testimonials.tsx";
+import Testimonials from "../../components/Testimonials.tsx";
 import {
     WrenchScrewdriverIcon,
     ArrowPathIcon,
@@ -36,7 +36,7 @@ const services = [
             "Remote Viewing Setup",
             "Complete Testing & Handover",
         ],
-        image: "/images/installation.jpg",
+        image: "/images/security-camera-building.jpg",
     },
     {
         id: "maintenance",
@@ -152,9 +152,9 @@ export default function CCTVPage() {
         <div className="text-gray-900">
 
             {/* HERO */}
-            <section className="bg-black text-white py-28 px-6 md:px-20">
+            <section className="bg-black text-white md:py-28 pt-26 pb-8 px-5 md:px-20">
                 <div className="max-w-6xl mx-auto">
-                    <h1 className="text-5xl font-bold mb-6">
+                    <h1 className="md:text-5xl text-3xl font-bold md:mb-6 mb-3">
                         Advanced CCTV Security Solutions
                     </h1>
                     <p className="text-gray-300 max-w-2xl">
@@ -165,7 +165,7 @@ export default function CCTVPage() {
             </section>
 
             {/* SERVICE SELECTOR */}
-            <section className="bg-gray-100 py-16 px-6">
+            <section className="bg-gray-100 md:py-16 py-12 px-5">
                 <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
                     {services.map((service) => {
                         const Icon = service.icon;
@@ -175,7 +175,7 @@ export default function CCTVPage() {
                             <button
                                 key={service.id}
                                 onClick={() => setActive(service)}
-                                className={`p-6 rounded-xl transition-all text-left ${isActive
+                                className={`p-3 md:p-6 rounded-xl transition-all text-left ${isActive
                                         ? "bg-black text-white shadow-xl"
                                         : "bg-white hover:shadow-md"
                                     }`}
@@ -192,18 +192,18 @@ export default function CCTVPage() {
             </section>
 
             {/* DYNAMIC SERVICE CONTENT */}
-            <section className="py-24 px-6 md:px-20 bg-white">
+            <section className="md:py-24 py-12 px-5 md:px-20 bg-white">
                 <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
 
                     <div>
-                        <h2 className="text-4xl font-bold mb-6">
+                        <h2 className="md:text-4xl text-3xl font-bold mb-6">
                             {active.heading}
                         </h2>
-                        <p className="text-gray-600 mb-8">
+                        <p className="text-gray-600 md:mb-8 mb-4">
                             {active.description}
                         </p>
 
-                        <div className="space-y-4">
+                        <div className="md:space-y-4 space-y-2">
                             {active.points.map((point, i) => (
                                 <div key={i} className="flex items-start gap-3">
                                     <CheckCircleIcon className="w-5 h-5 text-black mt-1" />
@@ -214,9 +214,11 @@ export default function CCTVPage() {
                     </div>
 
                     <div>
-                        <img
+                        <Image
                             src={active.image}
                             alt={active.title}
+                            width={600}
+                            height={350}
                             className="rounded-xl shadow-lg"
                         />
                     </div>
@@ -224,11 +226,11 @@ export default function CCTVPage() {
             </section>
 
             {/* WHY CHOOSE US */}
-            <section className="py-24 px-6 md:px-20 bg-slate-50">
-                <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <section className="md:py-24 py-12 px-5 md:px-20 bg-slate-50">
+                <div className="max-w-6xl mx-auto grid md:grid-cols-2 md:gap-16 gap-8 items-center">
 
                     <div>
-                        <h2 className="text-4xl font-bold mb-6">
+                        <h2 className="md:text-4xl text-3xl font-bold md:mb-6 mb-3">
                             Why Choose Our CCTV Solutions
                         </h2>
                         <p className="text-gray-600 mb-6">
@@ -240,7 +242,7 @@ export default function CCTVPage() {
                         </button>
                     </div>
 
-                    <div className="space-y-8 border-l-2 border-black pl-8">
+                    <div className="md:space-y-8 space-y-4 border-l-2 border-black md:pl-8 pl-4">
                         <div>
                             <h4 className="font-semibold text-lg">Certified Technicians</h4>
                             <p className="text-gray-600 text-sm">
@@ -265,10 +267,10 @@ export default function CCTVPage() {
             </section>
 
             {/* INDUSTRIES */}
-            <section className="py-24 px-6 md:px-20 bg-white text-center">
-                <h2 className="text-4xl font-bold mb-16">Industries We Serve</h2>
+            <section className="md:py-24 py-12 px-5 md:px-20 bg-white text-center">
+                <h2 className="md:text-4xl text-3xl font-bold md:mb-16 mb-8">Industries We Serve</h2>
 
-                <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
+                <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 md:gap-12 gap-6">
 
                     {[
                         { name: "Hotel", icon: BuildingOffice2Icon },
@@ -291,21 +293,21 @@ export default function CCTVPage() {
             </section>
 
             {/* SECURITY FEATURES - PREMIUM */}
-            <section className="py-28 px-6 md:px-20 bg-slate-50">
+            <section className="md:py-24 py-12 px-5 md:px-20 bg-slate-50">
                 <div className="max-w-6xl mx-auto">
 
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl font-bold">Advanced Security Features</h2>
-                        <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+                        <h2 className="md:text-4xl text-3xl font-bold">Advanced Security Features</h2>
+                        <p className="text-gray-600 md:mt-4 mt-2 max-w-2xl mx-auto">
                             Our CCTV systems are built with intelligent technology to ensure
                             maximum protection, clarity, and real-time monitoring.
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-10">
+                    <div className="grid md:grid-cols-3 md:gap-10 gap-5">
 
                         {/* Feature 1 */}
-                        <div className="bg-white border border-gray-200 rounded-2xl p-10 hover:shadow-xl transition">
+                        <div className="bg-white border border-gray-200 rounded-2xl md:p-10 p-5 hover:shadow-xl transition">
                             <div className="w-14 h-14 flex items-center justify-center bg-black text-white rounded-lg mb-6">
                                 <VideoCameraIcon className="w-7 h-7" />
                             </div>
@@ -319,7 +321,7 @@ export default function CCTVPage() {
                         </div>
 
                         {/* Feature 2 */}
-                        <div className="bg-white border border-gray-200 rounded-2xl p-10 hover:shadow-xl transition">
+                        <div className="bg-white border border-gray-200 rounded-2xl md:p-10 p-5 hover:shadow-xl transition">
                             <div className="w-14 h-14 flex items-center justify-center bg-black text-white rounded-lg mb-6">
                                 <MoonIcon className="w-7 h-7" />
                             </div>
@@ -333,7 +335,7 @@ export default function CCTVPage() {
                         </div>
 
                         {/* Feature 3 */}
-                        <div className="bg-white border border-gray-200 rounded-2xl p-10 hover:shadow-xl transition">
+                        <div className="bg-white border border-gray-200 rounded-2xl md:p-10 p-5 hover:shadow-xl transition">
                             <div className="w-14 h-14 flex items-center justify-center bg-black text-white rounded-lg mb-6">
                                 <BellAlertIcon className="w-7 h-7" />
                             </div>
@@ -354,14 +356,14 @@ export default function CCTVPage() {
             <Testimonials />
 
                 {/* FINAL CTA */}
-                <section className="py-20 px-6 text-center bg-gray-100">
-                    <h2 className="text-4xl font-bold mb-6">
+                <section className="md:py-24 py-12 px-5 text-center bg-gray-100">
+                    <h2 className="md:text-4xl text-3xl font-bold md:mb-6 mb-3">
                         Secure Your Property Today
                     </h2>
-                    <p className="text-gray-600 mb-8">
+                    <p className="text-gray-600 md:mb-8 mb-4">
                         Get a customized CCTV solution designed for your property.
                     </p>
-                    <button className="bg-black text-white px-10 py-4 rounded-lg hover:bg-gray-800 transition">
+                    <button className="bg-black text-white md:px-10 px-5 md:py-4 py-3 rounded-lg hover:bg-gray-800 transition">
                         Request Free Quote
                     </button>
                 </section>

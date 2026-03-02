@@ -59,25 +59,25 @@ export default function FeaturedAccessories() {
 
   return (
     <>
-    <section className="w-full bg-gray-50 py-28 px-6 md:px-20">
+    <section className="w-full bg-gray-50 md:py-24 py-12 px-5 md:px-20">
       {/* Header */}
-      <div className="text-center mb-16 max-w-3xl mx-auto">
+      <div className="text-center md:mb-16 mb-8 max-w-3xl mx-auto">
         <span className="text-sm uppercase tracking-widest text-accent font-semibold">
           Accessories
         </span>
-        <h2 className="text-4xl md:text-5xl font-bold mt-2 text-gray-900 leading-tight">
+        <h2 className="text-3xl leading-tighter md:text-5xl font-bold mt-2 text-gray-900 md:leading-tight">
           Premium CCTV Accessories
         </h2>
-        <p className="mt-4 text-gray-600 text-lg">
+        <p className="md:mt-4 mt-2 text-gray-600 text-lg">
           Enhance your CCTV setup with our premium accessories. Stylish, durable, and fully compatible with all major systems.
         </p>
       </div>
 
       {/* Split Layout */}
-      <div className="flex flex-col lg:flex-row gap-10 max-w-7xl mx-auto">
+      <div className="flex flex-col lg:flex-row md:gap-10 gap-5 max-w-7xl mx-auto">
         {/* Left: Large Featured Accessory */}
         <motion.div
-          className="relative flex-1 rounded-3xl overflow-hidden shadow-2xl group cursor-pointer h-150"
+          className="relative flex-1 rounded-3xl overflow-hidden shadow-2xl group cursor-pointer max-h-50 md:max-h-150 md:h-150"
           whileHover={{ scale: 1.03 }}
         >
           <motion.img
@@ -88,9 +88,9 @@ export default function FeaturedAccessories() {
           />
 
           {/* Overlay */}
-          <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/40 to-transparent flex flex-col justify-end p-8 transition-all duration-500 group-hover:opacity-100">
-            <h3 className="text-3xl font-bold text-white">{featured.name}</h3>
-            <p className="text-gray-200 mt-2 text-sm md:text-base">{featured.description}</p>
+          <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/40 to-transparent flex flex-col justify-end md:p-8 p-4 transition-all duration-500 group-hover:opacity-100">
+            <h3 className="md:text-3xl text-xl font-bold text-white">{featured.name}</h3>
+            <p className="text-gray-200 md:mt-2 mt-1 text-sm md:text-base">{featured.description}</p>
             <div className="flex items-center gap-4 mt-4">
               <span className="text-accent text-xl font-bold">{featured.price}</span>
               {featured.oldPrice && (
@@ -115,7 +115,7 @@ export default function FeaturedAccessories() {
 
         {/* Right: Two smaller accessory cards stacked */}
         <div className="flex-1 grid grid-cols-1 gap-6">
-          <div className="flex-1 flex gap-6">
+          <div className="flex-1 flex flex-col gap-6">
             {secondary.map((item) => (
               <motion.div
                 key={item.id}
@@ -131,7 +131,7 @@ export default function FeaturedAccessories() {
                 {/* Text always visible */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-4">
                   <h4 className="text-xl font-semibold text-white">{item.name}</h4>
-                  <p className="text-gray-200 text-sm mt-1">{item.description}</p>
+                  <p className="text-gray-200 text-sm md:mt-1">{item.description}</p>
                   <div className="flex items-center gap-3 mt-2">
                     <span className="text-accent font-bold">{item.price}</span>
                     {item.oldPrice && (
@@ -172,7 +172,7 @@ export default function FeaturedAccessories() {
                 {/* Text always visible */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-4">
                   <h4 className="text-xl font-semibold text-white">{item.name}</h4>
-                  <p className="text-gray-200 text-sm mt-1">{item.description}</p>
+                  <p className="text-gray-200 text-sm md:mt-1">{item.description}</p>
                   <div className="flex items-center gap-3 mt-2">
                     <span className="text-accent font-bold">{item.price}</span>
                     {item.oldPrice && (
