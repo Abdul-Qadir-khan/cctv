@@ -40,7 +40,7 @@ export default function ContactPage() {
                 text: "+1 (123) 456-7890",
               }, {
                 icon: Mail,
-                text: "support@securetech.com",
+                text: "support@GuardVision.com",
               }, {
                 icon: MapPin,
                 text: "123 Security Ave, Tech City, USA",

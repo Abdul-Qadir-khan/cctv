@@ -34,7 +34,7 @@ const services = [
 export default function Services() {
   return (
     <>
-      <section className="bg-white text-gray-900 py-24 px-5 md:px-12 relative overflow-hidden">
+      <section className="bg-white text-gray-900 py-24 px-5 md:px-20 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
 
           {/* Top Heading */}

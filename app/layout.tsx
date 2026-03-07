@@ -27,12 +27,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://yourdomain.com"), // 🔥 change later
 
   title: {
-    default: "SecureTech | CCTV Camera Installation & Security Systems",
-    template: "%s | SecureTech",
+    default: "GuardVision| CCTV Camera Installation & Security Systems",
+    template: "%s | GuardVision",
   },
 
   description:
-    "SecureTech provides professional CCTV camera installation, security systems, DVR/NVR setup, and electronic surveillance solutions for homes, offices, and industries.",
+    "GuardVisionprovides professional CCTV camera installation, security systems, DVR/NVR setup, and electronic surveillance solutions for homes, offices, and industries.",
 
   keywords: [
     "CCTV installation",
@@ -45,9 +45,9 @@ export const metadata: Metadata = {
     "Security solutions company",
   ],
 
-  authors: [{ name: "SecureTech" }],
-  creator: "SecureTech",
-  publisher: "SecureTech",
+  authors: [{ name: "GuardVision" }],
+  creator: "GuardVision",
+  publisher: "GuardVision",
 
   robots: {
     index: true,
@@ -55,17 +55,17 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "SecureTech | CCTV Camera & Security Solutions",
+    title: "GuardVision| CCTV Camera & Security Solutions",
     description:
       "Professional CCTV installation and security system services for residential and commercial properties.",
     url: "https://yourdomain.com",
-    siteName: "SecureTech",
+    siteName: "GuardVision",
     images: [
       {
         url: "/og-image.jpg", // 🔥 add inside public folder
         width: 1200,
         height: 630,
-        alt: "SecureTech CCTV Installation",
+        alt: "GuardVisionCCTV Installation",
       },
     ],
     locale: "en_US",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "SecureTech | CCTV & Security Systems",
+    title: "GuardVision| CCTV & Security Systems",
     description:
       "Trusted CCTV camera installation and electronic security solutions.",
     images: ["/og-image.jpg"],
@@ -109,7 +109,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              name: "SecureTech",
+              name: "GuardVision",
               image: "https://yourdomain.com/og-image.jpg",
               "@id": "https://yourdomain.com",
               url: "https://yourdomain.com",

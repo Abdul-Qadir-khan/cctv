@@ -8,7 +8,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "CCTV Installation Services",
   description:
-    "Professional CCTV installation services for homes, offices, and industrial properties. SecureTech provides complete surveillance solutions.",
+    "Professional CCTV installation services for homes, offices, and industrial properties. GuardVisionprovides complete surveillance solutions.",
   keywords: [
     "CCTV installation services",
     "Security camera setup",
@@ -75,14 +75,14 @@ const testimonials = [
     role: "Homeowner",
     photo: "/images/testimonial1.jpg",
     quote:
-      "SecureTech’s installation was professional and efficient. The monitoring service gives me peace of mind 24/7.",
+      "GuardVision’s installation was professional and efficient. The monitoring service gives me peace of mind 24/7.",
   },
   {
     name: "Mark Johnson",
     role: "Business Owner",
     photo: "/images/testimonial2.jpg",
     quote:
-      "The commercial CCTV system from SecureTech helped us reduce theft and monitor employees effectively.",
+      "The commercial CCTV system from GuardVisionhelped us reduce theft and monitor employees effectively.",
   },
   {
     name: "Sarah Williams",
@@ -110,7 +110,7 @@ export default function ServicesPage() {
           serviceType: "CCTV Installation",
           provider: {
             "@type": "LocalBusiness",
-            name: "SecureTech",
+            name: "GuardVision",
           },
           areaServed: {
             "@type": "City",
@@ -161,7 +161,7 @@ export default function ServicesPage() {
             Ready To Secure Your Property With Expert CCTV Solutions?
           </h2>
           <p className="text-gray-300 mb-6 max-w-md">
-            Partner with SecureTech for reliable, transparent, and efficient CCTV installation and monitoring services tailored to your needs.
+            Partner with GuardVisionfor reliable, transparent, and efficient CCTV installation and monitoring services tailored to your needs.
           </p>
         </div>
 

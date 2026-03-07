@@ -59,19 +59,19 @@ export default function ProductDetailsPage() {
       <div className="bg-gray-50">
 
         {/* ================= MAIN SECTION ================= */}
-        <section className="px-5 md:px-20 md:py-20 flex flex-col lg:flex-row gap-12">
+        <section className="px-5 md:px-20 md:py-24 py-12 flex flex-col lg:flex-row gap-12">
 
           {/* LEFT SIDE - IMAGE GALLERY */}
-          <div className="flex-1 max-w-xl sticky top-0 h-fit">
+          <div className="flex-1 max-w-xl md:sticky md:top-0 md:h-fit">
 
             <div
               onMouseMove={handleMouseMove}
-              className="relative overflow-hidden rounded-3xl shadow-2xl group bg-white"
+              className="relative overflow-hidden mt-5 md:mt-0 rounded-xl md:rounded-3xl shadow-2xl group bg-white"
             >
               <img
                 src={product.images[currentImageIndex]}
                 alt={product.name}
-                className="w-full h-[520px] object-cover transition-transform cursor-crosshair duration-300 group-hover:scale-150"
+                className="w-full md:h-130 object-cover transition-transform cursor-crosshair duration-300 group-hover:scale-150"
                 style={{
                   transformOrigin: `${position.x}% ${position.y}%`,
                 }}
@@ -106,13 +106,13 @@ export default function ProductDetailsPage() {
             </div>
 
             {/* Thumbnails */}
-            <div className="flex gap-4 mt-6 justify-center">
+            <div className="flex gap-4 mt-5 justify-center overflow-x-auto py-2">
               {product.images.map((img, idx) => (
                 <img
                   key={img}
                   src={img}
                   onClick={() => setCurrentImageIndex(idx)}
-                  className={`w-20 h-20 object-cover rounded-xl border-2 cursor-pointer transition ${idx === currentImageIndex
+                  className={`w-15 md:w-20 h-15 md:h-20 object-cover rounded-md md:rounded-xl border-2 cursor-pointer transition ${idx === currentImageIndex
                     ? "border-black scale-105"
                     : "border-transparent"
                     }`}
@@ -124,12 +124,12 @@ export default function ProductDetailsPage() {
           {/* RIGHT SIDE - DETAILS */}
           <div className="flex-1 max-w-lg">
 
-            <h1 className="text-4xl font-extrabold text-[#0B1F3A] mb-4">
+            <h1 className="text-2xl md:text-4xl font-extrabold text-[#0B1F3A] md:mb-4 mb-2">
               {product.name}
             </h1>
 
             {/* Rating */}
-            <div className="flex items-center gap-2 mb-6">
+            <div className="flex items-center gap-2 mb-3 md:mb-6">
               <span className="text-yellow-500 text-lg">★★★★★</span>
               <span className="text-gray-600 text-sm">
                 {product.rating} out of 5
@@ -167,9 +167,9 @@ export default function ProductDetailsPage() {
             </div>
 
             {/* DESCRIPTION BLOCK */}
-            <div className="space-y-6 mb-10">
+            <div className="md:space-y-6 space-y-3 md:mb-10 mb-5">
 
-              <h2 className="text-2xl font-bold text-[#0B1F3A]">
+              <h2 className="text-xl md:text-2xl font-bold text-[#0B1F3A]">
                 Advanced Security. Zero Compromise.
               </h2>
 
@@ -196,13 +196,13 @@ export default function ProductDetailsPage() {
             </div>
 
             {/* ADD TO CART */}
-            <button className="w-full bg-black text-white py-4 rounded-2xl text-lg font-semibold hover:bg-gray-900 transition">
+            <button className="w-full bg-black text-white py-4 rounded-xl md:rounded-2xl text-lg font-semibold hover:bg-gray-900 transition">
               Add to Cart
             </button>
 
             {/* TRUST SECTION */}
             <div className="mt-8 space-y-4 text-sm text-gray-600">
-              <div className="flex gap-4">
+              <div className="flex md:gap-4 gap-2 flex-wrap">
                 <span>🔒 Secure Checkout</span>
                 <span>🚚 Free Shipping</span>
                 <span>💳 All Major Cards Accepted</span>
@@ -215,7 +215,7 @@ export default function ProductDetailsPage() {
             </div>
 
             {/* ================= ACCORDION SECTION ================= */}
-            <div className="mt-5 bg-white rounded-2xl shadow-md divide-y border">
+            <div className="mt-2 md:mt-5 bg-white rounded-2xl shadow-md divide-y border">
 
               {["Description", "Specifications", "Shipping & Returns"].map(
                 (item) => (
@@ -256,11 +256,11 @@ export default function ProductDetailsPage() {
 
 
         {/* ================= REVIEWS ================= */}
-        <TestimonialSection/>
+        <TestimonialSection />
 
         {/* ================= RELATED PRODUCTS ================= */}
         <section className="bg-gray-50 px-6 md:px-20 py-20">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-center md:mb-12 mb-6">
             Related Products
           </h2>
 

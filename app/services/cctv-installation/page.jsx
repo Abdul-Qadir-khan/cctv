@@ -51,7 +51,7 @@ const services = [
             "Firmware Updates",
             "Performance Optimization",
         ],
-        image: "/images/maintenance.jpg",
+        image: "/images/maintenance.png",
     },
     {
         id: "monitoring",
@@ -66,7 +66,7 @@ const services = [
             "Cloud Backup Support",
             "Central Monitoring Integration",
         ],
-        image: "/images/monitoring.jpg",
+        image: "/images/survielance-monitoring.png",
     },
     {
         id: "design",
@@ -81,7 +81,7 @@ const services = [
             "Future Scalability Planning",
             "Budget Optimization",
         ],
-        image: "/images/design.jpg",
+        image: "/images/system-design.png",
     },
     {
         id: "storage",
@@ -96,7 +96,7 @@ const services = [
             "Data Encryption",
             "Long-Term Storage Options",
         ],
-        image: "/images/storage.jpg",
+        image: "/images/storage-and-backup.png",
     },
     {
         id: "upgrade",
@@ -111,7 +111,7 @@ const services = [
             "Resolution Enhancement",
             "System Expansion",
         ],
-        image: "/images/upgrade.jpg",
+        image: "/images/system-upgrade.png",
     },
     {
         id: "configuration",
@@ -126,7 +126,7 @@ const services = [
             "User Access Control",
             "Mobile Sync Setup",
         ],
-        image: "/images/configuration.jpg",
+        image: "/images/system-configuration.png",
     },
     {
         id: "consultation",
@@ -141,7 +141,7 @@ const services = [
             "Security Risk Analysis",
             "Future Expansion Planning",
         ],
-        image: "/images/consultation.jpg",
+        image: "/images/security-consultation.png",
     },
 ];
 

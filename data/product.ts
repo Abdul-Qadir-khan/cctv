@@ -46,7 +46,7 @@ export type Product = {
         "/images/pole-camera.webp",
       ],
       brand: {
-        name: "SecureTech",
+        name: "GuardVision",
         logo: "/images/brands/cp-plus.png",
       },
       category: "CCTV Camera",
@@ -116,7 +116,7 @@ export type Product = {
         "/images/dome-camera.webp",
       ],
       brand: {
-        name: "SecureTech",
+        name: "GuardVision",
         logo: "/images/brands/dahua.png",
       },
       category: "Wireless Camera",

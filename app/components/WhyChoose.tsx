@@ -32,13 +32,13 @@ const features = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="bg-linear-to-r from-primary/10 to-accent/10 py-8 md:py-12 px-6 md:px-12">
+    <section className="bg-linear-to-r from-primary/10 to-accent/10 py-12 md:py-24 px-5 md:px-20">
       <div className="max-w-7xl mx-auto text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
           Why <span className="text-accent">Choose Us</span>
         </h2>
         <p className="max-w-2xl mx-auto text-lg text-gray-700">
-          At SecureTech, we combine expertise, technology, and reliability to provide the best security solutions for your home and business.
+          At GuardVision, we combine expertise, technology, and reliability to provide the best security solutions for your home and business.
         </p>
       </div>
 

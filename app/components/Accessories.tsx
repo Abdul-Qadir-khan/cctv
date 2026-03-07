@@ -27,7 +27,7 @@ export default function CCTVAccessoriesPremium() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="bg-primary text-white py-24 px-6 md:px-20">
+    <section className="bg-primary text-white md:py-24 py-12 px-5 md:px-20">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
@@ -54,6 +54,7 @@ export default function CCTVAccessoriesPremium() {
               src={products[active].image}
               alt={products[active].name}
               fill
+              sizes="1000"
               className="object-cover transition duration-500 scale-100 hover:scale-105"
             />
             <div className="absolute inset-0 bg-black/40"></div>

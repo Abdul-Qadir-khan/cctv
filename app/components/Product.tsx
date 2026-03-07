@@ -1,88 +1,115 @@
 "use client";
 
-import Image from "next/image";
-import Button from "../components/Button";
 import Link from "next/link";
-
-const products = [
-  {
-    name: "HD Dome CCTV Camera",
-    image: "/images/dome-camera.webp",
-    link: "/products/hd-cctv",
-  },
-  {
-    name: "Bullet CCTV Camera",
-    image: "/images/bullet-camera.webp",
-    link: "/products/dvr-system",
-  },
-  {
-    name: "Pole Mounted CCTV Camera",
-    image: "/images/pole-camera.webp",
-    link: "/products/video-door-phone",
-  },
-  {
-    name: "Residential CCTV Camera",
-    image: "/images/residential-camera.webp",
-    link: "/products/biometric-access",
-  },
-  {
-    name: "Wireless CCTV Camera",
-    image: "/images/wireless-camera.webp",
-    link: "/products/biometric-access",
-  },
-  {
-    name: "Traffic Pole CCTV Camera",
-    image: "/images/traffic-pole-camera.webp",
-    link: "/products/biometric-access",
-  },
-];
+// import Image from "next/image";
+import { products } from "../../data/product";
+import Button from "../components/Button";
 
 export default function ProductsSection() {
   return (
     <section className="py-8 md:py-12 px-6 md:px-12 bg-primary/5">
-      <div className="max-w-7xl mx-auto text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-extrabold">
-          Featured <span className="text-accent">Products</span>
-        </h2>
-        <p className="text-gray-700 mt-4 max-w-2xl mx-auto">
-          Explore our best-selling security and surveillance products designed to protect your home and business.
-        </p>
-      </div>
+      <div className="md:max-w-7xl w-full mx-auto">
+        {/* Header */}
+        <div className="text-center md:mb-20 mb-10">
+          <span className="text-sm uppercase tracking-widest text-accent font-semibold">
+            Explore
+          </span>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-        {products.map((product) => (
-          <div
-            key={product.name}
-            className="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 transform transition duration-300"
-          >
-            <div className="relative w-full h-80">
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                className="object-cover h-full"
-                priority
-              />
-            </div>
-            <div className="p-4 text-center space-y-3">
-              <h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>
-              <Link href={product.link}>
-                <Button variant="accent" className="w-full py-3">
-                  View Details
-                </Button>
-              </Link>
-            </div>
-          </div>
-        ))}
-      </div>
+          <h2 className="text-4xl md:text-6xl font-bold mt-4 md:leading-tight leading-tighter text-gray-900">
+            Featured Products
+            <span className="block text-gray-400 text-lg md:text-xl mt-2 font-medium">
+              Premium CCTV & Security Systems
+            </span>
+          </h2>
 
-      {/* Optional: View All Products Button */}
-      <div className="mt-12 text-center">
-        <Link href="/products">
-          <Button variant="primary" className="px-10 py-3">
-            View All Products
-          </Button>
-        </Link>
+          <p className="max-w-3xl mx-auto text-gray-600 mt-6 text-lg leading-relaxed">
+            Browse our top-of-the-line security products designed to protect your home or business.
+            Each product is carefully selected for reliability and performance.
+          </p>
+        </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:gap-12 gap-6">
+          {products.map((product) => (
+            <div
+              key={product.id}
+              className="relative rounded-3xl overflow-hidden shadow-lg group hover:shadow-2xl transition-shadow duration-500"
+            >
+              {/* Product Image */}
+              <div className="relative md:h-80 h-70 overflow-hidden">
+                <img
+                  src={product.images?.[0]}
+                  alt={product.name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                {/* Brand Logo */}
+                {product.brand?.logo && (
+                  <div className="absolute top-4 left-4 bg-white rounded-full p-2 shadow-md z-10">
+                    <img
+                      src={product.brand.logo}
+                      alt={product.brand.name}
+                      className="w-10 h-10 object-contain"
+                      draggable={false}
+                    />
+                  </div>
+                )}
+
+                {/* New Badge */}
+                {product.isNew && (
+                  <div className="absolute top-4 right-4 bg-accent text-white text-xs px-3 py-1 rounded-full font-semibold shadow-md">
+                    New
+                  </div>
+                )}
+
+                {/* Bottom Content */}
+                <div className="absolute bottom-0 left-0 right-0 md:p-6 p-3 pb-4 bg-gradient-to-t from-black/80 to-transparent">
+                  <h3 className="text-lg md:text-xl font-bold text-white">
+                    {product.name}
+                  </h3>
+
+                  <p className="text-gray-200 text-sm md:mt-1">
+                    {product.description}
+                  </p>
+
+                  <div className="flex items-center justify-between mt-3">
+                    {/* Price Section */}
+                    <div className="flex items-center gap-2">
+                      {product.originalPrice && (
+                        <span className="line-through text-gray-400 text-sm">
+                          ${product.originalPrice}
+                        </span>
+                      )}
+                      <span className="text-accent font-semibold text-lg">
+                        ${product.price}
+                      </span>
+                    </div>
+
+                    {/* Buy Button */}
+                    <Link
+                      href={`/products/${product.slug}`}
+                      className="bg-accent text-white px-4 py-2 rounded-lg text-sm font-medium hover:scale-105 transform transition-transform"
+                    >
+                      Buy Now
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Optional: View All Products Button */}
+        <div className="mt-12 text-center">
+          <Link href="/products">
+            <Button variant="primary" className="px-10 py-3">
+              View All Products
+            </Button>
+          </Link>
+        </div>
       </div>
     </section>
   );

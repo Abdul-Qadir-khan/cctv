@@ -135,24 +135,26 @@ export default function Header() {
               {/* Dropdown submenu */}
               {link.submenu.length > 0 && openDropdown === link.name && (
                 <div
-                  className="absolute left-0 top-full mt-2 w-48 bg-primary rounded-md shadow-lg z-50"
-                  onMouseEnter={() => handleMouseEnter(link.name)} // keep open on submenu hover
-                  onMouseLeave={handleMouseLeave}                  // close on leaving submenu
+                  className="absolute left-0 top-full mt-3 w-56 rounded-xl bg-white/90 backdrop-blur-lg shadow-xl border border-gray-100 overflow-hidden animate-dropdown z-50"
+                  onMouseEnter={() => handleMouseEnter(link.name)}
+                  onMouseLeave={handleMouseLeave}
                 >
-                  <ul className="flex flex-col">
+
+                  <ul className="flex flex-col py-2">
+
                     {link.submenu.map((subLink) => (
                       <li key={subLink.name}>
                         <Link
                           href={subLink.href}
-                          className={`block px-4 py-2 transition-colors duration-200 ${isScrolled
-                            ? "bg-white text-black hover:text-accent hover:bg-gray-100"
-                            : "text-white hover:text-accent hover:bg-primary"
-                            }`}>
+                          className="flex items-center px-5 py-3 text-gray-700 font-medium transition-all duration-200 hover:bg-accent/10 hover:text-accent"
+                        >
                           {subLink.name}
                         </Link>
                       </li>
                     ))}
+
                   </ul>
+
                 </div>
               )}
             </div>
@@ -163,7 +165,7 @@ export default function Header() {
         <div className="hidden md:flex items-center space-x-6">
           <a
             href="tel:7817835909"
-            className="flex items-center space-x-2 font-medium hover:text-accent transition"
+            className="flex items-center space-x-2 font-medium hover:text-orange-500 transition"
           >
             <svg
               className="w-5 h-5"
@@ -186,7 +188,8 @@ export default function Header() {
           >
             Enquiry Now
           </Link>
-          <a
+        </div>
+          <Link
             href="https://wa.me/917817835909?text=CCTV%20camera%20installation%20request"
             target="_blank"
             rel="noopener noreferrer"
@@ -210,8 +213,7 @@ export default function Header() {
               </span>
 
             </div>
-          </a>
-        </div>
+          </Link>
 
         {/* Mobile Hamburger */}
         <button
@@ -235,12 +237,12 @@ export default function Header() {
             }`}
           onClick={(e) => e.stopPropagation()}
         ><Image
-            src="/images/white-logo.png" alt="" title="" width={150} height={30} />
+            src="/images/logo.png" alt="" title="" width={150} height={30} />
           <nav className="flex flex-col space-y-6 mt-12">
             {navLinks.map((link, index) => (
               <div key={link.name}>
                 <button
-                  className="flex items-center justify-between w-full text-left font-semibold text-white hover:text-accent transition"
+                  className="flex items-center justify-between w-full text-left font-medium text-white hover:text-accent transition"
                   onClick={() =>
                     link.submenu.length > 0 ? toggleMobileSubmenu(index) : setIsMobileMenuOpen(false)
                   }
@@ -276,9 +278,9 @@ export default function Header() {
 
             {/* Mobile Phone & Quote Button */}
             <div className="mt-8 border-t border-gray-700 pt-6">
-              <a
-                href="tel:+201061245741"
-                className="flex items-center space-x-2 font-semibold text-white hover:text-accent transition"
+              <Link
+                href="tel:7817835909"
+                className="flex items-center space-x-2 font-medium text-white hover:text-accent transition"
               >
                 <svg
                   className="w-5 h-5"
@@ -292,8 +294,8 @@ export default function Header() {
                 >
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.05 12.05 0 00.6 2.81 2 2 0 01-.45 2.11L9.91 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.05 12.05 0 002.81.6A2 2 0 0122 16.92z" />
                 </svg>
-                <span>+201061245741</span>
-              </a>
+                <span>+91 781 7835 909</span>
+              </Link>
 
               <Link
                 href="/contact"

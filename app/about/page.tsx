@@ -20,10 +20,10 @@ export default function About() {
       {/* Right Text Content */}
       <div className="md:w-1/2 space-y-6">
         <h2 className="text-4xl font-extrabold text-primary-dark">
-          About <span className="text-accent">SecureTech</span>
+          About <span className="text-accent">GuardVision</span>
         </h2>
         <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-          At SecureTech, we specialize in providing advanced CCTV and security solutions tailored to protect your home and business. With years of experience and a passion for innovation, our expert team is committed to delivering peace of mind through cutting-edge technology and exceptional service.
+          At GuardVision, we specialize in providing advanced CCTV and security solutions tailored to protect your home and business. With years of experience and a passion for innovation, our expert team is committed to delivering peace of mind through cutting-edge technology and exceptional service.
         </p>
 
         {/* Features list */}

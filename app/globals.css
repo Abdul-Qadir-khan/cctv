@@ -30,3 +30,19 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
+
+
+@keyframes dropdown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-dropdown {
+  animation: dropdown 0.25s ease forwards;
+}

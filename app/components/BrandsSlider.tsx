@@ -37,7 +37,7 @@ export default function BrandSlider() {
 
   return (
     <section className="py-8">
-      <h3 className="text-center text-2xl md:text-3xl font-semibold mb-4">Trusted By Leading Brands</h3>
+      {/* <h3 className="text-center text-2xl md:text-3xl font-semibold mb-4">Trusted By Leading Brands</h3> */}
       <div
         ref={sliderRef}
         className="flex gap-8 overflow-hidden whitespace-nowrap px-6 md:px-12"
@@ -51,7 +51,7 @@ export default function BrandSlider() {
             <img
               src={logo}
               alt={`Brand ${idx + 1}`}
-              className="h-25 w-25 object-contain grayscale hover:grayscale-0 transition duration-300"
+              className="h-15 w-25 object-contain grayscale hover:grayscale-0 transition duration-300"
             />
           </div>
         ))}
