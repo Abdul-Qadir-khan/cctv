@@ -9,8 +9,8 @@ const accessories = [
     name: "Mounting Bracket",
     description: "Durable mount for CCTV cameras.",
     image: "/images/dome-camera.webp",
-    price: "$29",
-    oldPrice: "$39",
+    price: "₹29",
+    oldPrice: "₹39",
     isNew: true,
   },
 ];
@@ -21,8 +21,8 @@ const rightColumnAccessories = [
     name: "Power Supply Cable",
     description: "10-meter long power supply cable.",
     image: "/images/hero1.jpg",
-    price: "$19",
-    oldPrice: "$25",
+    price: "₹19",
+    oldPrice: "₹25",
     isNew: false,
   },
   {
@@ -30,8 +30,8 @@ const rightColumnAccessories = [
     name: "Security Signage",
     description: "Professional security warning signs.",
     image: "/images/hero2.jpg",
-    price: "$9",
-    oldPrice: "$12",
+    price: "₹9",
+    oldPrice: "₹12",
     isNew: true,
   },
   {
@@ -39,8 +39,8 @@ const rightColumnAccessories = [
     name: "Cable Connector",
     description: "Premium CCTV connector set.",
     image: "/images/hero3.jpg",
-    price: "$14",
-    oldPrice: "$18",
+    price: "₹14",
+    oldPrice: "₹18",
   },
 ];
 

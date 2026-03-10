@@ -85,15 +85,15 @@ export default function CheckoutPage() {
                     <p className="text-sm text-gray-500">Qty: {item.qty}</p>
                   </div>
                 </div>
-                <p>${item.price * item.qty}</p>
+                <p>₹{item.price * item.qty}</p>
               </div>
             ))}
           </div>
 
           <div className="border-t mt-6 pt-4 space-y-2">
-            <div className="flex justify-between"><span>Subtotal</span><span>${total}</span></div>
-            <div className="flex justify-between"><span>Delivery</span><span>$0</span></div>
-            <div className="flex justify-between font-bold text-lg"><span>Total</span><span>${total}</span></div>
+            <div className="flex justify-between"><span>Subtotal</span><span>₹{total}</span></div>
+            <div className="flex justify-between"><span>Delivery</span><span>₹0</span></div>
+            <div className="flex justify-between font-bold text-lg"><span>Total</span><span>₹{total}</span></div>
           </div>
         </div>
 

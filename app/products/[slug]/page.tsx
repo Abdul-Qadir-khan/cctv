@@ -147,13 +147,13 @@ const { addToCart } = useCart();
 
               <div className="flex items-center gap-4">
                 <span className="text-4xl font-extrabold text-black">
-                  ${product.price}
+                  ₹{product.price}
                 </span>
 
                 {product.originalPrice && (
                   <>
                     <span className="line-through text-gray-400 text-xl">
-                      ${product.originalPrice}
+                      ₹{product.originalPrice}
                     </span>
 
                     <span className="bg-red-100 text-red-600 text-sm px-3 py-1 rounded-full font-semibold">
@@ -299,7 +299,7 @@ const { addToCart } = useCart();
                 />
                 <h3 className="mt-4 font-semibold">{item.name}</h3>
                 <p className="text-black font-bold mt-2">
-                  ${item.price}
+                  ₹{item.price}
                 </p>
               </Link>
             ))}

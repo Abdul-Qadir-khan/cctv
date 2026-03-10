@@ -84,11 +84,11 @@ export default function ProductsPageWithBrands() {
                       <div className="flex items-center gap-2">
                         {product.originalPrice && (
                           <span className="line-through text-gray-400 text-sm">
-                            ${product.originalPrice}
+                            ₹{product.originalPrice}
                           </span>
                         )}
                         <span className="text-accent font-semibold text-lg">
-                          ${product.price}
+                          ₹{product.price}
                         </span>
                       </div>
 
