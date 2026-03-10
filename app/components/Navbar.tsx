@@ -280,7 +280,7 @@ export default function Header() {
             <div className="mt-8 border-t border-gray-700 pt-6">
               <Link
                 href="tel:7817835909"
-                className="flex items-center space-x-2 font-medium text-white hover:text-accent transition"
+                className="flex  items-center space-x-2 font-medium text-white hover:text-accent transition"
               >
                 <svg
                   className="w-5 h-5"
