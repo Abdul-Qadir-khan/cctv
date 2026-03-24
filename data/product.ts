@@ -43,9 +43,9 @@ export const products: Product[] = [
     price: 299,
     originalPrice: 349,
     images: [
-      "/images/product1.jpg",
-      "/images/product2.png",
-      "/images/pole-camera.webp",
+      "/images/products/pic1.png",
+      "/images/products/pic2.png",
+      "/images/products/pic3.png",
     ],
     brand: {
       name: "GuardVision",
@@ -81,8 +81,9 @@ export const products: Product[] = [
     price: 499,
     originalPrice: 549,
     images: [
-      "/images/dome-camera.webp",
-      "/images/pole-camera.webp",
+      "/images/products/pic4.png",
+      "/images/products/pic5.png",
+      "/images/products/pic3.png",
     ],
     brand: {
       name: "TechGuard",
@@ -116,8 +117,9 @@ export const products: Product[] = [
     description: "Compact wireless security camera with real-time alerts and cloud storage integration.",
     price: 199,
     images: [
-      "/images/wireless-camera.webp",
-      "/images/dome-camera.webp",
+      "/images/products/pic5.png",
+      "/images/products/pic6.png",
+      "/images/products/pic3.png",
     ],
     brand: {
       name: "GuardVision",
@@ -153,8 +155,9 @@ export const products: Product[] = [
     price: 399,
     originalPrice: 449,
     images: [
-      "/images/pole-camera.webp",
-      "/images/bullet-camera.webp",
+      "/images/products/pic5.png",
+      "/images/products/pic7.png",
+      "/images/products/pic3.png",
     ],
     brand: {
       name: "VisionPro",
@@ -189,8 +192,9 @@ export const products: Product[] = [
     price: 259,
     originalPrice: 299,
     images: [
-      "/images/bullet-camera.webp",
-      "/images/dome-camera.webp",
+      "/images/products/pic7.png",
+      "/images/products/pic8.png",
+      "/images/products/pic3.png",
     ],
     brand: {
       name: "SafeHome",

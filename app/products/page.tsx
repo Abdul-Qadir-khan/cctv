@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { products } from "../../data/product";
-import Feature from "../components/FeatureSection";
+// import Feature from "../components/FeatureSection";
 import Product from "../components/ProductChoose";
 
 export default function ProductsPageWithBrands() {
@@ -108,7 +108,7 @@ export default function ProductsPageWithBrands() {
         </div>
       </section>
 
-      <Feature />
+      {/* <Feature /> */}
       <Product />
     </>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Hero from "./components/Hero";
 import CategoriesSection from "./components/Categories";
 import BestSellerSection from "./components/BestSellersSection";
@@ -8,16 +9,34 @@ import DiscountsSection from "./components/Discount";
 import CustomerReviewsSection from "./components/Testimonials";
 import WhyChoose from "./components/WhyChoose";
 import BrandsSlider from "./components/BrandsSlider";
+import { products, Product } from "../data/product"; // Assuming the `products` and `Product` are imported from your data
 
 export default function Home() {
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+
+  // Define the filterProducts function
+  const filterProducts = (category: string) => {
+    if (category === "all") {
+      setFilteredProducts(products); // Show all products
+    } else {
+      const filtered = products.filter(
+        (product) => product.category.toLowerCase() === category.toLowerCase()
+      );
+      setFilteredProducts(filtered);
+    }
+  };
+
   return (
     <div>
       {/* Hero Section */}
       <Hero />
 
-      {/* Categories Section */}
-      <CategoriesSection />
+      {/* Brands Section */}
+      <BrandsSlider />
 
+      {/* Categories Section */}
+      <CategoriesSection filterProducts={filterProducts} />
+<hr className="border-gray-300" />
       {/* Best Sellers Section */}
       <BestSellerSection />
 
@@ -32,9 +51,7 @@ export default function Home() {
 
       {/* Why Choose Us Section */}
       <WhyChoose />
-
-      {/* Brands Section */}
-      <BrandsSlider />
+    
     </div>
   );
 }

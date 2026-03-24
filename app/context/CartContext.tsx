@@ -1,41 +1,30 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 
-type CartItem = {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  qty: number;
-};
+const CartContext = createContext<any>(null);
 
-type CartContextType = {
-  cart: CartItem[];
-  addToCart: (item: CartItem) => void;
-};
+export const CartProvider = ({ children }: any) => {
+  const [cart, setCart] = useState<any[]>([]);
 
-const CartContext = createContext<CartContextType | null>(null);
-
-export function CartProvider({ children }: { children: React.ReactNode }) {
-  const [cart, setCart] = useState<CartItem[]>([]);
-
-  // Load cart from localStorage
-  useEffect(() => {
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) setCart(JSON.parse(storedCart));
-  }, []);
-
-  // Save cart whenever it changes
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-
-  const addToCart = (item: CartItem) => {
+  const addToCart = (item: any) => {
     setCart((prev) => [...prev, item]);
   };
 
-  return <CartContext.Provider value={{ cart, addToCart }}>{children}</CartContext.Provider>;
-}
+  const removeFromCart = (id: number) => {
+    setCart((prev) => prev.filter((item) => item.id !== id));
+  };
 
-export const useCart = () => useContext(CartContext)!;
+  // 🔥 TOTAL COUNT (IMPORTANT)
+  const cartCount = cart.reduce((acc, item) => acc + item.qty, 0);
+
+  return (
+    <CartContext.Provider
+      value={{ cart, addToCart, removeFromCart, cartCount }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
+};
+
+export const useCart = () => useContext(CartContext);

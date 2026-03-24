@@ -7,21 +7,21 @@ const products = [
     name: "Men's T-Shirt",
     category: "T-Shirt",
     image:
-      "https://images.unsplash.com/photo-1598762955579-cf5c45317404?q=80&w=1400&auto=format&fit=crop",
+      "/images/categories/mens-wear.avif",
     price: "₹799",
   },
   {
     name: "Slim Fit Jeans",
     category: "Pants",
     image:
-      "https://images.unsplash.com/photo-1615397230997-4eae9b249a56?q=80&w=1400&auto=format&fit=crop",
+      "/images/categories/womens-wear.avif",
     price: "₹1,499",
   },
   {
     name: "Casual Hoodie",
     category: "Hoodies",
     image:
-      "https://images.unsplash.com/photo-1594602422067-211d7f40c693?q=80&w=1400&auto=format&fit=crop",
+      "/images/categories/kids-wear.avif",
     price: "₹1,199",
   },
 ];

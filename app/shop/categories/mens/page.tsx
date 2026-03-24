@@ -1,3 +1,4 @@
+"use client"
 import { useState, useEffect } from "react";
 import ProductSection from "../../../components/Product";
 import CategoriesSection from "../../../components/Categories";
@@ -12,8 +13,13 @@ export default function CategoryPage({ categoryName, bannerImage }: CategoryPage
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
   useEffect(() => {
+    if (!categoryName) {
+      console.error('Category name is required');
+      return; // Handle the case when categoryName is missing
+    }
+  
     const filtered = products.filter(
-      (p) => p.category.toLowerCase() === categoryName.toLowerCase()
+      (p) => p.category && p.category.toLowerCase() === categoryName.toLowerCase()
     );
     setFilteredProducts(filtered);
   }, [categoryName]);
@@ -31,8 +37,6 @@ export default function CategoryPage({ categoryName, bannerImage }: CategoryPage
         </div>
       </section>
 
-      {/* Categories Section */}
-      <CategoriesSection filterProducts={() => {}} />
 
       {/* Products */}
       <div className="py-16 px-6 md:px-12 bg-gray-50">

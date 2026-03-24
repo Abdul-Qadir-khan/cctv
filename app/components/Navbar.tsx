@@ -5,8 +5,12 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X, Search, ShoppingBag, User } from "lucide-react";
+import { useCart } from "../context/CartContext";
+import { ShoppingCart } from "lucide-react";
 
 export default function Header() {
+  const { cartCount } = useCart();
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -45,7 +49,7 @@ export default function Header() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Men", href: "/men" },
+    { name: "Men", href: "/shop/categories/mens" },
     { name: "Women", href: "/women" },
     { name: "New", href: "/new" },
     { name: "Sale", href: "/sale" },
@@ -106,7 +110,17 @@ export default function Header() {
             {/* SEARCH ICON */}
             <button onClick={() => setIsSearchOpen(true)} className="relative"> <Search size={20} className="cursor-pointer" /> </button>
             {/* USER ICON */} <User size={20} className="cursor-pointer" />
-            {/* SHOPPING BAG ICON */} <ShoppingBag size={20} className="cursor-pointer" />
+            <Link href="/checkout" className="relative">
+
+              <ShoppingCart className="w-6 h-6" />
+
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                  {cartCount}
+                </span>
+              )}
+
+            </Link>
           </div>
         </div>
 

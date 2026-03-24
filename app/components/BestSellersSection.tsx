@@ -1,15 +1,35 @@
+
+
+
 "use client";
 
-import Link from "next/link";
-import { products } from "../../data/product"; // Product data
-import Button from "../components/Button"; // Assuming Button component exists
+import Image from "next/image"; // Import next/image for optimized images
+import { Product, products } from "../../data/product"; // ✅ import products and type
+import { ShoppingCart, Heart } from "lucide-react"; // Importing the icons
+import Button from "./Button";
+import { useState } from "react";
+import { FaStar } from "react-icons/fa";
 
-export default function BestSellersSection() {
-  // Filtering products that have the bestSeller flag set to true
-  const bestSellers = products.filter((product) => product.bestSeller);
+// Define ProductSectionProps interface
+interface ProductSectionProps {
+  filteredProducts?: Product[];
+}
+
+export default function BestSellersSection({ filteredProducts }: ProductSectionProps) {
+  const initialLimit = 4;
+
+  // Use filteredProducts if passed, otherwise fallback to all products
+  const initialProducts = filteredProducts?.slice(0, initialLimit) || products.slice(0, initialLimit);
+  const [visibleProducts, setVisibleProducts] = useState<Product[]>(initialProducts);
+
+  const loadMoreProducts = () => {
+    const currentLength = visibleProducts.length;
+    const nextProducts = (filteredProducts || products).slice(currentLength, currentLength + initialLimit);
+    setVisibleProducts(prev => [...prev, ...nextProducts]);
+  };
 
   return (
-    <section className="py-16 px-6 md:px-12 bg-gray-50">
+    <section className="py-16 px-6 md:px-12 bg-gradient-to-t from-primary/5 to-transparent">
       <div className="md:max-w-7xl w-full mx-auto">
         {/* Header */}
         <div className="text-center md:mb-16 mb-6">
@@ -23,72 +43,74 @@ export default function BestSellersSection() {
             </span>
           </h2>
         </div>
-
-        {/* Best Sellers Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 md:gap-12 gap-8">
-          {bestSellers.map((product) => (
+          {visibleProducts.map((product) => (
             <div
               key={product.id}
-              className="relative bg-white rounded-2xl overflow-hidden border border-gray-200 group hover:shadow-xl transition-all duration-300 ease-in-out"
+              className="relative group bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-105"
             >
               {/* Product Image */}
-              <div className="relative w-full h-80 overflow-hidden">
-                <img
-                  src={product.images?.[0]} // Primary image
+              <div className="relative w-full h-64 bg-[#f0eeed]">
+                <Image
+                  src={product.images[0]} // Primary image
                   alt={product.name}
-                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+                  width={500}
+                  height={500}
+                  className="w-full h-full object-contain transition-all duration-300 group-hover:opacity-0 group-hover:scale-110"
+                  loading="lazy" // Lazy load images
                 />
-              </div>
-
-              {/* Product Details */}
-              <div className="p-6">
-                {/* Brand / Category Name */}
-                {product.brand?.name && (
-                  <div className="text-sm text-gray-600 font-semibold mb-2">
-                    {product.brand.name}
-                  </div>
+                {/* Second Image on Hover */}
+                {product.images[1] && (
+                  <Image
+                    src={product.images[1]} // Secondary image for hover effect
+                    alt={product.name}
+                    width={500}
+                    height={500}
+                    className="absolute inset-0 w-full h-full object-contain transition-opacity duration-300 opacity-0 group-hover:opacity-100 group-hover:scale-110"
+                    loading="lazy" // Lazy load images
+                  />
                 )}
-
-                {/* Product Name (Clickable with Underline on Hover) */}
-                <Link href={`/products/${product.slug}`}>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2 transition duration-300 ease-in-out hover:underline">
-                    {product.name}
-                  </h3>
-                </Link>
-
-                {/* Price */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    {product.originalPrice && (
-                      <span className="line-through text-gray-400 text-sm">
-                        ₹{product.originalPrice}
-                      </span>
-                    )}
-                    <span className="text-accent font-semibold text-lg">
-                      ₹{product.price}
-                    </span>
-                  </div>
-                </div>
               </div>
 
-              {/* View Product Button */}
-              <Link href={`/products/${product.slug}`}>
-                <Button variant="primary" className="px-8 py-3 text-lg mb-3 ml-3">
-                  View Product
-                </Button>
-              </Link>
+              {/* Product Info */}
+              <div className="p-4">
+                <h3 className="text-lg font-semibold text-gray-900">{product.name}</h3>
+                <div className="flex items-center mt-2">
+                  {/* Product Rating (Stars) */}
+                  {[...Array(5)].map((_, index) => (
+                    <FaStar
+                      key={index}
+                      className={`text-${index < product.rating ? "yellow" : "gray"}-500`}
+                    />
+                  ))}
+                  <span className="ml-2 text-sm text-gray-500">{product.rating}/5</span>
+                </div>
+                <p className="mt-3 text-xl font-semibold text-gray-900">${product.price}</p>
+              </div>
+
+              {/* Hover Icons */}
+              <div className="absolute top-0 left-0 w-full h-full flex justify-between items-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {/* Wishlist Icon */}
+                <button className="p-2 bg-white text-gray-600 rounded-full shadow-md hover:bg-gray-100 hover:text-red-500">
+                  <Heart size={24} />
+                </button>
+                {/* Add to Cart Icon */}
+                <button className="p-2 bg-primary text-white rounded-full shadow-md hover:bg-primary/80 hover:text-yellow-500">
+                  <ShoppingCart size={24} />
+                </button>
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Optional: View All Products Button */}
-        <div className="mt-12 text-center">
-          <Link href="/products">
-            <Button variant="primary" className="px-10 py-3 text-lg">
-              View All Products
+        {/* Load More Button */}
+        {visibleProducts.length < (filteredProducts || products).length && (
+          <div className="mt-12 text-center">
+            <Button variant="primary" className="px-10 py-3 text-lg" onClick={loadMoreProducts}>
+              Load More
             </Button>
-          </Link>
-        </div>
+          </div>
+        )}
       </div>
     </section>
   );

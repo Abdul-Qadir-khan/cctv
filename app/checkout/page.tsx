@@ -1,103 +1,256 @@
 "use client";
 
 import { useCart } from "../context/CartContext";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function CheckoutPage() {
-  const { cart } = useCart();
-  const router = useRouter();
+  const { cart, removeFromCart } = useCart();
 
-  const [payment, setPayment] = useState("cod");
+  const [step, setStep] = useState(1);
+
   const [form, setForm] = useState({
     name: "",
-    email: "",
     phone: "",
     address: "",
     city: "",
-    zip: ""
+    pincode: "",
   });
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: any) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const placeOrder = async () => {
-    if (!form.name || !form.email || !form.phone || !form.address) {
-      alert("Please fill all required fields");
-      return;
-    }
+  const subtotal = cart.reduce(
+    (acc: number, item: any) => acc + item.price * item.qty,
+    0
+  );
 
-    const orderId = "ORD-" + Date.now();
-
-    await fetch("/api/send-order", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ orderId, ...form, payment, items: cart, total })
-    });
-
-    router.push(`/order-success?orderId=${orderId}`);
-  };
+  const shipping = subtotal > 0 ? 50 : 0;
+  const total = subtotal + shipping;
 
   return (
-    <div className="min-h-screen bg-gray-100 py-16 px-6 md:px-20">
-      <div className="grid lg:grid-cols-2 gap-10 max-w-6xl mx-auto">
+    <section className="bg-[#f7f7f7] min-h-screen pt-28 pb-16 px-6 md:px-12">
 
-        {/* LEFT SIDE */}
-        <div className="bg-white p-8 rounded-xl shadow space-y-6">
-          <h2 className="text-2xl font-bold">Shipping Details</h2>
+      <div className="max-w-7xl mx-auto">
 
-          <input name="name" placeholder="Full Name" onChange={handleChange} className="border p-3 rounded w-full"/>
-          <input name="email" placeholder="Email Address" onChange={handleChange} className="border p-3 rounded w-full"/>
-          <input name="phone" placeholder="Phone Number" onChange={handleChange} className="border p-3 rounded w-full"/>
-          <input name="address" placeholder="Street Address" onChange={handleChange} className="border p-3 rounded w-full"/>
+        {/* ================= STEP INDICATOR ================= */}
+        <div className="flex justify-center mb-12">
+          <div className="flex items-center gap-6 text-sm">
 
-          <div className="grid grid-cols-2 gap-4">
-            <input name="city" placeholder="City" onChange={handleChange} className="border p-3 rounded"/>
-            <input name="zip" placeholder="Zip Code" onChange={handleChange} className="border p-3 rounded"/>
-          </div>
+            {["Cart", "Shipping", "Payment"].map((label, i) => (
+              <div key={i} className="flex items-center gap-2">
 
-          {/* PAYMENT */}
-          <div className="pt-6">
-            <h3 className="font-semibold mb-4 text-lg">Payment Method</h3>
-            <label className="flex items-center gap-3 border p-4 rounded-lg cursor-pointer">
-              <input type="radio" checked={payment === "cod"} onChange={() => setPayment("cod")}/>
-              <span>Cash on Delivery</span>
-            </label>
-            <p className="text-sm text-gray-500 mt-2">Pay when your order arrives at your doorstep.</p>
-          </div>
-
-          <button onClick={placeOrder} className="w-full bg-black text-white py-3 rounded-lg mt-6">Place Order</button>
-        </div>
-
-        {/* RIGHT SIDE */}
-        <div className="bg-white p-8 rounded-xl shadow h-fit">
-          <h2 className="text-xl font-semibold mb-6">Order Summary</h2>
-          <div className="space-y-4">
-            {cart.map((item) => (
-              <div key={item.id} className="flex justify-between items-center">
-                <div className="flex gap-3 items-center">
-                  <img src={item.image} className="w-14 h-14 object-cover rounded"/>
-                  <div>
-                    <p className="font-medium">{item.name}</p>
-                    <p className="text-sm text-gray-500">Qty: {item.qty}</p>
-                  </div>
+                <div
+                  className={`w-8 h-8 flex items-center justify-center rounded-full border ${
+                    step === i + 1
+                      ? "bg-black text-white"
+                      : "text-gray-400"
+                  }`}
+                >
+                  {i + 1}
                 </div>
-                <p>₹{item.price * item.qty}</p>
+
+                <span
+                  className={
+                    step === i + 1 ? "text-black" : "text-gray-400"
+                  }
+                >
+                  {label}
+                </span>
+
+                {i !== 2 && <div className="w-10 h-[1px] bg-gray-300" />}
               </div>
             ))}
-          </div>
 
-          <div className="border-t mt-6 pt-4 space-y-2">
-            <div className="flex justify-between"><span>Subtotal</span><span>₹{total}</span></div>
-            <div className="flex justify-between"><span>Delivery</span><span>₹0</span></div>
-            <div className="flex justify-between font-bold text-lg"><span>Total</span><span>₹{total}</span></div>
           </div>
         </div>
 
+        <div className="grid lg:grid-cols-[1.5fr_1fr] gap-12">
+
+          {/* ================= LEFT ================= */}
+          <div className="space-y-10">
+
+            {/* ================= STEP 1: CART ================= */}
+            {step === 1 && (
+              <div className="bg-white rounded-3xl p-8 shadow-sm">
+
+                <h2 className="text-2xl font-semibold mb-6">
+                  Review Your Cart
+                </h2>
+
+                <div className="space-y-6">
+                  {cart.map((item: any, i: number) => (
+                    <div
+                      key={i}
+                      className="flex items-center gap-5 border-b pb-5"
+                    >
+                      <img
+                        src={item.images[0]}
+                        className="w-20 h-20 object-contain bg-[#f3f3f3] rounded-xl"
+                      />
+
+                      <div className="flex-1">
+                        <p className="font-medium">{item.name}</p>
+                        <p className="text-sm text-gray-500">
+                          {item.selectedColor} • {item.selectedSize}
+                        </p>
+                        <p className="text-sm">Qty: {item.qty}</p>
+                      </div>
+
+                      <button
+                        onClick={() => removeFromCart(item.id)}
+                        className="text-red-500 text-sm"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => setStep(2)}
+                  className="mt-8 bg-black text-white px-8 py-3 rounded-full"
+                >
+                  Continue
+                </button>
+              </div>
+            )}
+
+            {/* ================= STEP 2: SHIPPING ================= */}
+            {step === 2 && (
+              <div className="bg-white rounded-3xl p-8 shadow-sm">
+
+                <h2 className="text-2xl font-semibold mb-6">
+                  Shipping Details
+                </h2>
+
+                <div className="grid md:grid-cols-2 gap-5">
+
+                  <input
+                    name="name"
+                    placeholder="Full Name"
+                    onChange={handleChange}
+                    className="border p-3 rounded-xl"
+                  />
+
+                  <input
+                    name="phone"
+                    placeholder="Phone"
+                    onChange={handleChange}
+                    className="border p-3 rounded-xl"
+                  />
+
+                  <input
+                    name="city"
+                    placeholder="City"
+                    onChange={handleChange}
+                    className="border p-3 rounded-xl"
+                  />
+
+                  <input
+                    name="pincode"
+                    placeholder="Pincode"
+                    onChange={handleChange}
+                    className="border p-3 rounded-xl"
+                  />
+
+                </div>
+
+                <textarea
+                  name="address"
+                  placeholder="Full Address"
+                  onChange={handleChange}
+                  className="border p-3 rounded-xl w-full mt-5"
+                />
+
+                <div className="flex gap-4 mt-8">
+                  <button
+                    onClick={() => setStep(1)}
+                    className="border px-6 py-3 rounded-full"
+                  >
+                    Back
+                  </button>
+
+                  <button
+                    onClick={() => setStep(3)}
+                    className="bg-black text-white px-8 py-3 rounded-full"
+                  >
+                    Continue
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* ================= STEP 3: PAYMENT ================= */}
+            {step === 3 && (
+              <div className="bg-white rounded-3xl p-8 shadow-sm">
+
+                <h2 className="text-2xl font-semibold mb-6">
+                  Payment Method
+                </h2>
+
+                <div className="space-y-4">
+
+                  <div className="border p-4 rounded-xl flex justify-between">
+                    <span>Cash on Delivery</span>
+                    <input type="radio" name="payment" defaultChecked />
+                  </div>
+
+                  <div className="border p-4 rounded-xl flex justify-between opacity-50">
+                    <span>Online Payment (Coming Soon)</span>
+                  </div>
+
+                </div>
+
+                <div className="flex gap-4 mt-8">
+                  <button
+                    onClick={() => setStep(2)}
+                    className="border px-6 py-3 rounded-full"
+                  >
+                    Back
+                  </button>
+
+                  <button className="bg-black text-white px-8 py-3 rounded-full">
+                    Place Order
+                  </button>
+                </div>
+              </div>
+            )}
+
+          </div>
+
+          {/* ================= RIGHT SUMMARY ================= */}
+          <div className="sticky top-28 h-fit">
+            <div className="bg-white rounded-3xl p-8 shadow-md">
+
+              <h2 className="text-xl font-semibold mb-6">
+                Order Summary
+              </h2>
+
+              <div className="space-y-3 text-sm">
+
+                <div className="flex justify-between">
+                  <span>Subtotal</span>
+                  <span>₹{subtotal}</span>
+                </div>
+
+                <div className="flex justify-between">
+                  <span>Shipping</span>
+                  <span>₹{shipping}</span>
+                </div>
+
+                <div className="flex justify-between font-semibold pt-4 border-t">
+                  <span>Total</span>
+                  <span>₹{total}</span>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

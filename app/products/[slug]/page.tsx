@@ -1,45 +1,39 @@
 "use client";
-import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
-import { useState } from "react";
-import { notFound, useParams } from "next/navigation";
-import { products } from "../../../data/product";
-import Link from "next/link";
-import TestimonialSection from "@/app/components/Testimonials";
 
-// new
 import { useRouter } from "next/navigation";
-import { useCart } from "@/app/context/CartContext";
+import { useCart } from "../../context/CartContext";
+import { useParams } from "next/navigation";
+import { products } from "../../../data/product";
+import { useState } from "react";
+import { Heart } from "lucide-react";
+import Link from "next/link"
 
-export default function ProductDetailsPage() {
+
+export default function ProductDetails() {
+  const router = useRouter();
+  const { addToCart } = useCart();
+  const handleAddToCart = () => {
+    addToCart({
+      ...product,
+      selectedSize,
+      selectedColor,
+      qty,
+    });
+  };
+
+
   const params = useParams();
-  const slug = params.slug as string;
+  const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
 
   const product = products.find((p) => p.slug === slug);
-  if (!product) return notFound();
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [position, setPosition] = useState({ x: 50, y: 50 });
-  const [openSection, setOpenSection] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedColor, setSelectedColor] = useState("");
+  const [qty, setQty] = useState(1);
+  const [wish, setWish] = useState(false);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const { left, top, width, height } =
-      e.currentTarget.getBoundingClientRect();
-
-    const x = ((e.clientX - left) / width) * 100;
-    const y = ((e.clientY - top) / height) * 100;
-
-    setPosition({ x, y });
-  };
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % product.images.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) =>
-      prev === 0 ? product.images.length - 1 : prev - 1
-    );
-  };
+  if (!product) return <p className="p-10">Product not found</p>;
 
   const discount =
     product.originalPrice &&
@@ -49,264 +43,212 @@ export default function ProductDetailsPage() {
       100
     );
 
-  const toggleSection = (section: string) => {
-    setOpenSection(openSection === section ? null : section);
-  };
-
-  const relatedProducts = products
-    .filter((p) => p.slug !== product.slug)
-    .slice(0, 3);
-
-    const router = useRouter();
-const { addToCart } = useCart();
   return (
-    <>
-      <section className="py-12 bg-black"></section>
-      <div className="bg-gray-50">
+    <section className="px-6 md:px-12 py-10 bg-white mt-20">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
 
-        {/* ================= MAIN SECTION ================= */}
-        <section className="px-5 md:px-20 md:py-24 py-12 flex flex-col lg:flex-row gap-12">
+        {/* ================= IMAGES ================= */}
+        <div className="flex gap-4">
 
-          {/* LEFT SIDE - IMAGE GALLERY */}
-          <div className="flex-1 max-w-xl md:sticky md:top-0 md:h-fit">
-
-            <div
-              onMouseMove={handleMouseMove}
-              className="relative overflow-hidden mt-5 md:mt-0 rounded-xl md:rounded-3xl shadow-2xl group bg-white"
-            >
+          {/* Thumbnails */}
+          <div className="flex flex-col gap-3">
+            {product.images.map((img, i) => (
               <img
-                src={product.images[currentImageIndex]}
-                alt={product.name}
-                className="w-full md:h-130 object-cover transition-transform cursor-crosshair duration-300 group-hover:scale-150"
-                style={{
-                  transformOrigin: `${position.x}% ${position.y}%`,
-                }}
+                key={i}
+                src={img}
+                onClick={() => setSelectedImage(i)}
+                className={`w-20 h-20 object-contain border rounded cursor-pointer transition ${selectedImage === i ? "border-black" : "border-gray-200"
+                  }`}
               />
+            ))}
+          </div>
 
-              {/* Glass Arrows */}
-              <button
-                onClick={prevImage}
-                className="absolute left-5 top-1/2 -translate-y-1/2 
-              backdrop-blur-md bg-white/40 
-              hover:bg-black hover:text-white
-              border border-white/50
-              shadow-xl
-              rounded-full min-w-12 min-h-12 w-12 h-12 flex items-center justify-center
-              transition-all duration-300 hover:scale-110"
-              >
-                <FaChevronLeft />
-              </button>
+          {/* Main Image */}
+          <div className="flex-1 bg-[#f6f6f6] rounded-2xl flex items-center justify-center p-6 overflow-hidden group">
+            <img
+              src={product.images[selectedImage]}
+              className="h-[420px] object-contain transition-transform duration-500 group-hover:scale-110"
+            />
+          </div>
+        </div>
 
-              <button
-                onClick={nextImage}
-                className="absolute right-5 top-1/2 -translate-y-1/2 
-              backdrop-blur-md bg-white/40 
-              hover:bg-black hover:text-white
-              border border-white/50
-              shadow-xl
-              rounded-full min-w-12 min-h-12 w-12 h-12 flex items-center justify-center
-              transition-all duration-300 hover:scale-110"
-              >
-                <FaChevronRight />
-              </button>
-            </div>
+        {/* ================= RIGHT CONTENT ================= */}
+        <div className="space-y-6 sticky top-24 h-fit">
 
-            {/* Thumbnails */}
-            <div className="flex gap-4 mt-5 justify-center overflow-x-auto py-2">
-              {product.images.map((img, idx) => (
-                <img
-                  key={img}
-                  src={img}
-                  onClick={() => setCurrentImageIndex(idx)}
-                  className={`w-15 md:w-20 h-15 md:h-20 object-cover rounded-md md:rounded-xl border-2 cursor-pointer transition ${idx === currentImageIndex
-                    ? "border-black scale-105"
-                    : "border-transparent"
+          {/* Brand */}
+          <p className="text-sm text-gray-500">{product.brand.name}</p>
+
+          {/* Title */}
+          <h1 className="text-4xl font-semibold leading-tight">
+            {product.name}
+          </h1>
+
+          {/* Rating */}
+          <div className="text-yellow-500 text-sm">
+            ★ {product.rating} / 5
+          </div>
+
+          {/* Price */}
+          <div className="flex items-center gap-4">
+            {product.originalPrice && (
+              <span className="line-through text-gray-400 text-lg">
+                ₹{product.originalPrice}
+              </span>
+            )}
+            <span className="text-3xl font-semibold">
+              ₹{product.price}
+            </span>
+
+            {discount && (
+              <span className="bg-red-100 text-red-500 text-sm px-2 py-1 rounded">
+                -{discount}%
+              </span>
+            )}
+          </div>
+
+          {/* Description */}
+          <p className="text-gray-600 leading-relaxed">
+            {product.description}
+          </p>
+
+          {/* COLORS */}
+          <div>
+            <h4 className="font-medium mb-2">Select Color</h4>
+            <div className="flex gap-2">
+              {product.variations.colors.map((c) => (
+                <button
+                  key={c}
+                  onClick={() => setSelectedColor(c)}
+                  className={`px-4 py-1 border rounded-full text-sm ${selectedColor === c
+                      ? "bg-black text-white"
+                      : "hover:bg-black hover:text-white"
                     }`}
-                />
+                >
+                  {c}
+                </button>
               ))}
             </div>
           </div>
 
-          {/* RIGHT SIDE - DETAILS */}
-          <div className="flex-1 max-w-lg">
-
-            <h1 className="text-2xl md:text-4xl font-extrabold text-[#0B1F3A] md:mb-4 mb-2">
-              {product.name}
-            </h1>
-
-            {/* Rating */}
-            <div className="flex items-center gap-2 mb-3 md:mb-6">
-              <span className="text-yellow-500 text-lg">★★★★★</span>
-              <span className="text-gray-600 text-sm">
-                {product.rating} out of 5
-              </span>
+          {/* SIZE */}
+          <div>
+            <h4 className="font-medium mb-2">Select Size</h4>
+            <div className="flex gap-2">
+              {product.variations.sizes.map((s) => (
+                <button
+                  key={s}
+                  onClick={() => setSelectedSize(s)}
+                  className={`px-4 py-1 border rounded-full text-sm ${selectedSize === s
+                      ? "bg-black text-white"
+                      : "hover:bg-black hover:text-white"
+                    }`}
+                >
+                  {s}
+                </button>
+              ))}
             </div>
+          </div>
 
-            {/* PRICING CARD */}
-            <div className="bg-white rounded-2xl shadow-xl p-6 mb-8 border">
+          {/* QUANTITY */}
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setQty((q) => Math.max(1, q - 1))}
+              className="px-3 py-1 border rounded"
+            >
+              -
+            </button>
+            <span>{qty}</span>
+            <button
+              onClick={() => setQty((q) => q + 1)}
+              className="px-3 py-1 border rounded"
+            >
+              +
+            </button>
+          </div>
 
-              <div className="flex items-center gap-4">
-                <span className="text-4xl font-extrabold text-black">
-                  ₹{product.price}
-                </span>
-
-                {product.originalPrice && (
-                  <>
-                    <span className="line-through text-gray-400 text-xl">
-                      ₹{product.originalPrice}
-                    </span>
-
-                    <span className="bg-red-100 text-red-600 text-sm px-3 py-1 rounded-full font-semibold">
-                      SAVE {discount}%
-                    </span>
-                  </>
-                )}
-              </div>
-
-              <p className="text-green-600 text-sm mt-4">
-                ● In stock. Order today to get it by <strong>March 10</strong>
-              </p>
-
-              <p className="text-gray-500 text-sm mt-2">
-                Free Shipping + 30 Day Money Back Guarantee
-              </p>
-            </div>
-
-            {/* DESCRIPTION BLOCK */}
-            <div className="md:space-y-6 space-y-3 md:mb-10 mb-5">
-
-              <h2 className="text-xl md:text-2xl font-bold text-[#0B1F3A]">
-                Advanced Security. Zero Compromise.
-              </h2>
-
-              <p className="text-gray-700 leading-relaxed">
-                {product.description} Built with cutting-edge surveillance
-                technology, this device ensures crystal-clear monitoring,
-                real-time alerts, and unmatched reliability. Whether installed
-                indoors or outdoors, it performs flawlessly in all conditions.
-              </p>
-
-              <ul className="space-y-2 text-gray-700">
-                <li>✔ Ultra HD video clarity</li>
-                <li>✔ Smart motion detection alerts</li>
-                <li>✔ Weather-resistant construction</li>
-                <li>✔ Seamless mobile integration</li>
-              </ul>
-
-              <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl">
-                <p className="text-blue-800 font-medium">
-                  Designed for modern homes and businesses that demand reliable,
-                  intelligent protection.
-                </p>
-              </div>
-            </div>
+          {/* ACTIONS */}
+          <div className="flex items-center gap-4">
 
             {/* ADD TO CART */}
-            {/* <button className="w-full bg-black text-white py-4 rounded-xl md:rounded-2xl text-lg font-semibold hover:bg-gray-900 transition">
-              Add to Cart
-            </button> */}
-
             <button
-  onClick={() => {
-    addToCart({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.images[0],
-      qty: 1,
-    });
+              disabled={!selectedSize || !selectedColor}
+              onClick={handleAddToCart}
+              className={`px-8 py-3 rounded-full text-white transition-all ${selectedSize && selectedColor
+                  ? "bg-black hover:bg-gray-800 hover:scale-105"
+                  : "bg-gray-300 cursor-not-allowed"
+                }`}
+            >
+              Add to Cart
+            </button>
 
-    router.push("/checkout");
-  }}
-  className="w-full bg-black text-white py-4 rounded-xl text-lg font-semibold hover:bg-gray-900 transition"
->
-  Buy Now
-</button>
+            {/* BUY NOW */}
+            <button
+              disabled={!selectedSize || !selectedColor}
+              onClick={() => {
+                handleAddToCart();
+                router.push("/checkout");
+              }}
+              className={`px-8 py-3 rounded-full border transition-all ${selectedSize && selectedColor
+                  ? "hover:bg-black hover:text-white hover:scale-105"
+                  : "opacity-50 cursor-not-allowed"
+                }`}
+            >
+              Buy Now
+            </button>
 
-            {/* TRUST SECTION */}
-            <div className="mt-8 space-y-4 text-sm text-gray-600">
-              <div className="flex md:gap-4 gap-2 flex-wrap">
-                <span>🔒 Secure Checkout</span>
-                <span>🚚 Free Shipping</span>
-                <span>💳 All Major Cards Accepted</span>
-              </div>
+            {/* WISHLIST */}
+            <button
+              onClick={() => setWish(!wish)}
+              className={`p-3 rounded-full border transition ${wish ? "text-red-500 border-red-500" : ""
+                }`}
+            >
+              <Heart size={18} />
+            </button>
 
-              <div className="bg-gray-50 p-4 rounded-xl">
-                90-Day 200% Happiness Guarantee. If you're not satisfied,
-                we’ll make it right.
-              </div>
-            </div>
-
-            {/* ================= ACCORDION SECTION ================= */}
-            <div className="mt-2 md:mt-5 bg-white rounded-2xl shadow-md divide-y border">
-
-              {["Description", "Specifications", "Shipping & Returns"].map(
-                (item) => (
-                  <div key={item}>
-                    <button
-                      onClick={() => toggleSection(item)}
-                      className="w-full text-left px-6 py-5 flex justify-between items-center font-semibold"
-                    >
-                      {item}
-                      <span>{openSection === item ? "−" : "+"}</span>
-                    </button>
-
-                    {openSection === item && (
-                      <div className="px-6 pb-6 text-gray-600 text-sm">
-                        {item === "Description" &&
-                          "This product is engineered with premium materials and smart surveillance technology to ensure long-term reliability."}
-
-                        {item === "Specifications" &&
-                          Object.entries(product.variations.specs).map(
-                            ([key, value]) => (
-                              <p key={key}>
-                                <strong>{key}:</strong> {value}
-                              </p>
-                            )
-                          )}
-
-                        {item === "Shipping & Returns" &&
-                          "Free shipping within 3-5 business days. 30-day hassle-free returns guaranteed."}
-                      </div>
-                    )}
-                  </div>
-                )
-              )}
-            </div>
           </div>
 
-        </section>
+          {/* STOCK */}
+          <p className="text-sm text-gray-500">
+            {product.stock > 0
+              ? `In Stock (${product.stock})`
+              : "Out of Stock"}
+          </p>
 
-        {/* ================= REVIEWS ================= */}
-        <TestimonialSection />
-
-        {/* ================= RELATED PRODUCTS ================= */}
-        <section className="bg-gray-50 px-6 md:px-20 py-20">
-          <h2 className="text-2xl md:text-3xl font-bold text-center md:mb-12 mb-6">
-            Related Products
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {relatedProducts.map((item) => (
-              <Link
-                key={item.id}
-                href={`/products/${item.slug}`}
-                className="bg-white rounded-2xl shadow hover:shadow-xl transition p-4"
-              >
-                <img
-                  src={item.images[0]}
-                  className="h-48 w-full object-cover rounded-xl"
-                />
-                <h3 className="mt-4 font-semibold">{item.name}</h3>
-                <p className="text-black font-bold mt-2">
-                  ₹{item.price}
-                </p>
-              </Link>
-            ))}
-          </div>
-        </section>
-
+        </div>
       </div>
-    </>
+
+      {/* ================= SPECS ================= */}
+      <div className="max-w-7xl mx-auto mt-20">
+        <h2 className="text-2xl font-semibold mb-6">Specifications</h2>
+
+        <div className="grid md:grid-cols-2 gap-6 text-sm">
+          {Object.entries(product.variations.specs).map(([key, value]) => (
+            <div key={key} className="flex justify-between border-b pb-2">
+              <span className="text-gray-500 capitalize">
+                {key.replace(/([A-Z])/g, " $1")}
+              </span>
+              <span className="font-medium">{value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ================= RELATED PRODUCTS ================= */}
+      <div className="max-w-7xl mx-auto mt-20">
+        <h2 className="text-2xl font-semibold mb-6">You may also like</h2>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {products.slice(0, 4).map((p) => (
+            <Link key={p.id} href={`/products/${p.slug}`}>
+              <div className="bg-[#f1f1f1] p-4 rounded-xl text-center hover:shadow">
+                <img src={p.images[0]} className="h-40 mx-auto object-contain" />
+                <p className="mt-2 text-sm">{p.name}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+    </section>
   );
 }

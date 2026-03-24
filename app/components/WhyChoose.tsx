@@ -1,7 +1,8 @@
 "use client";
 
 import { Shield, Users, Clock, Star } from "lucide-react";
-import Button from "../components/Button";
+import Link from "../components/Button";
+
 
 const features = [
   {
@@ -61,9 +62,9 @@ export default function WhyChooseUs() {
       </div>
 
       <div className="mt-12 text-center">
-        <Button variant="primary" className="px-10 py-3 text-lg">
+        <Link href="/shop" variant="primary" className="px-10 py-3 text-lg">
           Explore Our Collection
-        </Button>
+        </Link>
       </div>
     </section>
   );
