@@ -4,13 +4,18 @@ import React, { ButtonHTMLAttributes, ReactNode } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 
-type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "accent";
+type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "outline"
+  | "ghost"
+  | "dark";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   variant?: ButtonVariant;
   className?: string;
-  href?: string; // <-- added optional href
+  href?: string;
 }
 
 export default function Button({
@@ -21,30 +26,37 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    "inline-block font-medium rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2";
+    "inline-flex items-center justify-center px-6 py-3 text-sm font-medium tracking-wide rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2";
 
   const variants = {
-    primary: "bg-accent text-white hover:bg-accent/90 focus:ring-accent",
+    primary:
+      "bg-black text-white hover:bg-gray-800 shadow-md hover:shadow-lg hover:-translate-y-0.5 focus:ring-black",
+
     secondary:
-      "bg-primary text-white border border-gray-600 hover:border-accent hover:text-accent focus:ring-accent",
+      "bg-white text-black border border-gray-200 hover:bg-gray-50 hover:border-gray-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:ring-gray-300",
+
     outline:
-      "border border-accent text-accent bg-transparent hover:bg-accent hover:text-primary focus:ring-accent",
-    ghost: "bg-transparent text-white hover:text-accent focus:ring-accent",
-    accent: "bg-yellow-500 text-primary hover:bg-yellow-600 focus:ring-yellow-500",
+      "border border-black text-black bg-transparent hover:bg-black hover:text-white shadow-sm hover:shadow-md hover:-translate-y-0.5 focus:ring-black",
+
+    ghost:
+      "bg-transparent text-black hover:bg-gray-100 hover:shadow-sm focus:ring-gray-300",
+
+    dark:
+      "bg-gray-900 text-white hover:bg-black shadow-md hover:shadow-lg hover:-translate-y-0.5 focus:ring-gray-900",
   };
 
-  // If href exists, render a Link
+  const classes = clsx(baseStyles, variants[variant], className);
+
   if (href) {
     return (
-      <Link href={href} className={clsx(baseStyles, variants[variant], className)}>
+      <Link href={href} className={classes}>
         {children}
       </Link>
     );
   }
 
-  // Otherwise, render a normal button
   return (
-    <button className={clsx(baseStyles, variants[variant], className)} {...props}>
+    <button className={classes} {...props}>
       {children}
     </button>
   );

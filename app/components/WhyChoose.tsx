@@ -6,27 +6,27 @@ import Button from "../components/Button";
 const features = [
   {
     icon: Shield,
-    title: "Trusted Security",
+    title: "Premium Quality Fabrics",
     description:
-      "We provide reliable and certified security solutions with years of experience in the industry.",
+      "We source only the finest materials to ensure comfort, durability, and elegance in every piece.",
   },
   {
     icon: Users,
-    title: "Expert Team",
+    title: "Expert Tailoring",
     description:
-      "Our team of skilled professionals ensures that your home and business are protected 24/7.",
+      "Our skilled team crafts each garment with precision and attention to detail, giving you the perfect fit.",
   },
   {
     icon: Clock,
-    title: "24/7 Support",
+    title: "Fast & Reliable Service",
     description:
-      "Round-the-clock monitoring and assistance to guarantee your safety and peace of mind.",
+      "Enjoy quick turnaround times and dependable service for both online and in-store purchases.",
   },
   {
     icon: Star,
-    title: "High-Quality Equipment",
+    title: "Trendy & Exclusive Styles",
     description:
-      "We use only the latest, state-of-the-art security devices for maximum protection.",
+      "Stay ahead of the fashion curve with our carefully curated collection of modern and timeless designs.",
   },
 ];
 
@@ -35,10 +35,10 @@ export default function WhyChooseUs() {
     <section className="bg-linear-to-r from-primary/10 to-accent/10 py-12 md:py-24 px-5 md:px-20">
       <div className="max-w-7xl mx-auto text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-          Why <span className="text-accent">Choose Us</span>
+          Why <span className="text-accent">Choose Velmora</span>
         </h2>
         <p className="max-w-2xl mx-auto text-lg text-gray-700">
-          At GuardVision, we combine expertise, technology, and reliability to provide the best security solutions for your home and business.
+          At Velmora Cloth Store, we blend quality, style, and exceptional service to bring you clothing that looks and feels amazing.
         </p>
       </div>
 
@@ -61,8 +61,8 @@ export default function WhyChooseUs() {
       </div>
 
       <div className="mt-12 text-center">
-        <Button variant="accent" className="px-10 py-3 text-lg">
-          Learn More About Us
+        <Button variant="primary" className="px-10 py-3 text-lg">
+          Explore Our Collection
         </Button>
       </div>
     </section>

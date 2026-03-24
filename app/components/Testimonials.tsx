@@ -1,112 +1,87 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { StarIcon } from "@heroicons/react/24/solid";
+import { Star } from "lucide-react";
 
-const testimonials = [
+const reviews = [
   {
-    name: "Al Amin Bali",
-    role: "Customer",
-    image: "/images/user1.jpg",
-    text: "Outstanding CCTV installation service. Clean setup and excellent remote monitoring support.",
+    id: 1,
+    name: "John Doe",
+    photo: "https://randomuser.me/api/portraits/men/1.jpg", // Placeholder for user photo
+    rating: 5,
+    review:
+      "Absolutely love the HD CCTV Camera! The setup was simple and the picture quality is amazing. Definitely worth the price.",
   },
   {
-    name: "Hasanul Banna",
-    role: "Manager",
-    image: "/images/user2.jpg",
-    text: "Our office security improved dramatically. The monitoring system is fast and reliable.",
+    id: 2,
+    name: "Emma Smith",
+    photo: "https://randomuser.me/api/portraits/women/2.jpg", // Placeholder for user photo
+    rating: 4,
+    review:
+      "Great product, the night vision feature works perfectly! Only wish the mobile app could be more responsive.",
   },
   {
-    name: "Mahbubul Alam",
-    role: "Admin",
-    image: "/images/user3.jpg",
-    text: "Professional team with advanced technology solutions. Highly recommended.",
+    id: 3,
+    name: "Michael Brown",
+    photo: "https://randomuser.me/api/portraits/men/3.jpg", // Placeholder for user photo
+    rating: 4,
+    review:
+      "Excellent security camera with a sharp picture. The weather resistance feature is solid, and I feel safer knowing it's monitoring my property.",
   },
 ];
 
-export default function TestimonialSection() {
-  const [active, setActive] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActive((prev) => (prev + 1) % testimonials.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, []);
-
+export default function CustomerReviewsSection() {
   return (
-    <section className="bg-black text-white md:py-24 py-12 px-5 md:px-20 overflow-hidden">
-      <div className="max-w-5xl mx-auto text-center">
+    <section className="py-16 px-6 md:px-12 bg-gray-50">
+      <div className="md:max-w-7xl w-full mx-auto">
+        {/* Header */}
+        <div className="text-center md:mb-16 mb-6">
+          <span className="text-sm uppercase tracking-widest text-accent font-semibold">
+            Our Customers Love Us
+          </span>
+          <h2 className="text-4xl md:text-6xl font-bold mt-4 md:leading-tight leading-tighter text-gray-900">
+            Customer Reviews
+            <span className="block text-gray-400 text-lg md:text-xl mt-2 font-medium">
+              See what our customers are saying
+            </span>
+          </h2>
+        </div>
 
-        <h2 className="md:text-4xl text-3xl font-bold mb-16">
-          What Our Clients Say
-        </h2>
-
-        <div className="relative">
-
-          {testimonials.map((item, i) => (
+        {/* Reviews Grid */}
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          {reviews.map((review) => (
             <div
-              key={i}
-              className={`transition-all duration-700 ${
-                i === active
-                  ? "opacity-100 scale-100"
-                  : "opacity-0 scale-95 absolute inset-0"
-              }`}
+              key={review.id}
+              className="bg-white p-6 rounded-lg shadow-lg border border-gray-200"
             >
-              <div className="bg-gray-900 rounded-2xl md:p-12 p-5 shadow-2xl">
-
-                {/* Stars */}
-                <div className="flex justify-center mb-6">
-                  {[...Array(5)].map((_, idx) => (
-                    <StarIcon
-                      key={idx}
-                      className="w-5 h-5 text-yellow-400"
-                    />
-                  ))}
-                </div>
-
-                {/* Text */}
-                <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-                  {item.text}
-                </p>
-
-                {/* User */}
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 rounded-full overflow-hidden mb-4 border-2 border-white">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-full h-full object-cover"
-                    />
+              <div className="flex items-center gap-4">
+                <img
+                  src={review.photo}
+                  alt={review.name}
+                  className="w-12 h-12 rounded-full object-cover"
+                />
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-800">{review.name}</h4>
+                  <div className="flex items-center">
+                    {[...Array(5)].map((_, index) => (
+                      <Star
+                        key={index}
+                        className={`w-5 h-5 ${index < review.rating ? "text-yellow-400" : "text-gray-300"}`}
+                      />
+                    ))}
                   </div>
-                  <h4 className="font-semibold">{item.name}</h4>
-                  <span className="text-sm text-gray-400">
-                    {item.role}
-                  </span>
                 </div>
-
               </div>
+              <p className="mt-4 text-gray-600">{review.review}</p>
             </div>
           ))}
-
         </div>
 
-        {/* DOTS */}
-        <div className="flex justify-center mt-10 gap-3">
-          {testimonials.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setActive(i)}
-              className={`w-3 h-3 rounded-full transition ${
-                active === i
-                  ? "bg-white"
-                  : "bg-gray-600"
-              }`}
-            />
-          ))}
+        {/* Optional: View More Reviews Button */}
+        <div className="mt-12 text-center">
+          <button className="px-10 py-3 bg-accent text-white rounded-lg hover:bg-accent/80 transition">
+            Read More Reviews
+          </button>
         </div>
-
       </div>
     </section>
   );

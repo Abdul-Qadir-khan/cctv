@@ -7,10 +7,10 @@ import { CheckCircle2, Settings2, Clock, ShieldCheck } from "lucide-react";
 export default function About() {
 
   const features = [
-    { icon: CheckCircle2, text: "Trusted Security Experts" },
-    { icon: Settings2, text: "Customized CCTV Solutions" },
-    { icon: Clock, text: "24/7 Monitoring Support" },
-    { icon: ShieldCheck, text: "Advanced Protection Systems" },
+    { icon: CheckCircle2, text: "Curated Fashion Collections" },
+    { icon: Settings2, text: "Personalized Styling Advice" },
+    { icon: Clock, text: "Fast & Reliable Delivery" },
+    { icon: ShieldCheck, text: "High-Quality Materials" },
   ];
 
   return (
@@ -19,8 +19,8 @@ export default function About() {
       {/* IMAGE SIDE */}
       <div className="relative w-full h-[420px] md:h-auto">
         <Image
-          src="/images/hero1.jpg"
-          alt="GuardVision Security"
+          src="/images/product1.jpg"
+          alt="Velmora Fashion"
           fill
           sizes="1000"
           className="object-cover"
@@ -37,18 +37,15 @@ export default function About() {
         <div className="max-w-xl">
 
           <span className="text-sm font-semibold tracking-widest text-accent uppercase">
-            About GuardVision
+            About Velmora
           </span>
 
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-4 leading-tight">
-            Reliable Security <br /> For Homes & Businesses
+            Timeless Fashion <br /> For Every Occasion
           </h2>
 
           <p className="text-gray-600 text-lg mt-6 leading-relaxed">
-            GuardVision provides modern CCTV surveillance and intelligent
-            security systems designed to keep your property protected.
-            We combine cutting-edge technology with professional
-            installation and dependable monitoring.
+            Velmora is your ultimate destination for the latest in fashion. Our collection is designed to cater to every style, offering high-quality, trendsetting pieces for both casual and formal wear. With personalized styling advice and a commitment to exceptional service, Velmora brings fashion to your doorstep.
           </p>
 
           {/* FEATURES */}
@@ -75,10 +72,10 @@ export default function About() {
           {/* CTA */}
           <div className="mt-10">
             <Button
-              variant="accent"
+              variant="primary"
               className="px-8 py-3 text-lg"
             >
-              Get Free Consultation
+              Get Your Free Styling Consultation
             </Button>
           </div>
 

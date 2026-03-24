@@ -1,54 +1,58 @@
 import type { Metadata } from "next";
-import { Bruno_Ace, Montserrat, Roboto } from "next/font/google";
+import { Playfair_Display, Inter, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { CartProvider } from "./context/CartContext";
 
-const montserrat = Montserrat({
+/* ================= FONTS ================= */
+const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-heading",
-});
-
-const brunoAce = Bruno_Ace({
-  subsets: ["latin"],
-  weight: ["400"], // Only 400 is supported
-  variable: "--slider-heading",
   display: "swap",
 });
 
-const roboto = Roboto({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["300", "400", "500", "600"],
   variable: "--font-body",
+  display: "swap",
 });
 
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-ui",
+  display: "swap",
+});
+/* ================= SEO ================= */
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://yourdomain.com"), // 🔥 change later
+  metadataBase: new URL("https://velmora.com"), // change later
 
   title: {
-    default: "GuardVision| CCTV Camera Installation & Security Systems",
-    template: "%s | GuardVision",
+    default: "Velmora | Premium Fashion & Streetwear",
+    template: "%s | Velmora",
   },
 
   description:
-    "GuardVisionprovides professional CCTV camera installation, security systems, DVR/NVR setup, and electronic surveillance solutions for homes, offices, and industries.",
+    "Velmora is a premium fashion brand offering modern streetwear, denim, and everyday essentials. Minimal, stylish, and designed for confidence.",
 
   keywords: [
-    "CCTV installation",
-    "Security cameras",
-    "DVR NVR setup",
-    "Home security systems",
-    "Office surveillance",
-    "Biometric systems",
-    "Video door phone",
-    "Security solutions company",
+    "Velmora",
+    "streetwear brand",
+    "fashion ecommerce",
+    "premium clothing",
+    "men fashion",
+    "women fashion",
+    "denim jeans",
+    "minimal fashion",
   ],
 
-  authors: [{ name: "GuardVision" }],
-  creator: "GuardVision",
-  publisher: "GuardVision",
+  authors: [{ name: "Velmora" }],
+  creator: "Velmora",
+  publisher: "Velmora",
 
   robots: {
     index: true,
@@ -56,17 +60,17 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "GuardVision| CCTV Camera & Security Solutions",
+    title: "Velmora | Premium Fashion Brand",
     description:
-      "Professional CCTV installation and security system services for residential and commercial properties.",
-    url: "https://yourdomain.com",
-    siteName: "GuardVision",
+      "Shop modern streetwear, denim, and essentials with Velmora.",
+    url: "https://velmora.com",
+    siteName: "Velmora",
     images: [
       {
-        url: "/og-image.jpg", // 🔥 add inside public folder
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "GuardVisionCCTV Installation",
+        alt: "Velmora Fashion Collection",
       },
     ],
     locale: "en_US",
@@ -75,24 +79,18 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "GuardVision| CCTV & Security Systems",
-    description:
-      "Trusted CCTV camera installation and electronic security solutions.",
+    title: "Velmora Fashion",
+    description: "Premium streetwear & modern fashion essentials.",
     images: ["/og-image.jpg"],
   },
 
   icons: {
     icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
-  other: {
-    "geo.region": "IN-UP",
-    "geo.placename": "Your City",
-    "geo.position": "28.6139;77.2090",
-    ICBM: "28.6139, 77.2090",
-  },
 };
+
+/* ================= LAYOUT ================= */
 
 export default function RootLayout({
   children,
@@ -102,49 +100,31 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${brunoAce.variable} ${montserrat.variable} ${roboto.variable} antialiased`}
-      >
+  className={`${playfair.variable} ${inter.variable} ${dmSans.variable} antialiased bg-white text-black`}
+>
+        {/* STRUCTURED DATA (ECOMMERCE) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              name: "GuardVision",
-              image: "https://yourdomain.com/og-image.jpg",
-              "@id": "https://yourdomain.com",
-              url: "https://yourdomain.com",
-              telephone: "+91-XXXXXXXXXX",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "Your Street Name",
-                addressLocality: "Your City",
-                addressRegion: "Your State",
-                postalCode: "123456",
-                addressCountry: "IN",
-              },
-              openingHoursSpecification: {
-                "@type": "OpeningHoursSpecification",
-                dayOfWeek: [
-                  "Monday",
-                  "Tuesday",
-                  "Wednesday",
-                  "Thursday",
-                  "Friday",
-                  "Saturday",
-                ],
-                opens: "09:00",
-                closes: "18:00",
-              },
+              "@type": "Organization",
+              name: "Velmora",
+              url: "https://velmora.com",
+              logo: "https://velmora.com/logo.png",
+              sameAs: [
+                "https://instagram.com/velmora",
+                "https://facebook.com/velmora",
+              ],
             }),
           }}
         />
 
-        <Navbar />
         <CartProvider>
+          <Navbar />
           {children}
+          <Footer />
         </CartProvider>
-        <Footer />
       </body>
     </html>
   );
